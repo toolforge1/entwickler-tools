@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON URL Encoder – JSON für URLs kodieren</title>
+  <meta name="description" content="JSON URL Encoder zum sicheren Kodieren von JSON für URLs. Kostenlos, schnell und direkt im Browser. Keine Daten werden hochgeladen.">
+  <meta name="keywords" content="JSON URL Encoder, JSON URL kodieren, JSON encode URL, JSON URL encoding, JSON kodieren">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-url-encoder.html">
+
+  <meta property="og:title" content="JSON URL Encoder – JSON für URLs kodieren">
+  <meta property="og:description" content="JSON für URLs kodieren – kostenlos, schnell und direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-url-encoder.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was macht der JSON URL Encoder?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der JSON URL Encoder kodiert gültiges JSON so, dass es sicher als Bestandteil einer URL verwendet werden kann."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Kodierung erfolgt vollständig lokal in Ihrem Browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich das kodierte JSON kopieren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Das kodierte Ergebnis kann direkt kopiert oder als Textdatei heruntergeladen werden."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 32px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-size: 23px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 230px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: none;
+      padding: 11px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .primary {
+      background: #222;
+      color: white;
+    }
+
+    .secondary {
+      background: #e9edf2;
+      color: #222;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .message {
+      margin: 12px 0;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1769aa;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    .privacy {
+      background: #f0f7f2;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+
+    code {
+      background: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>JSON URL Encoder</h1>
+
+    <p>
+      Kodieren Sie JSON für die sichere Verwendung in URLs.
+      Dieses kostenlose Tool funktioniert direkt im Browser.
+    </p>
+
+    <label for="input"><strong>JSON-Eingabe</strong></label>
+    <textarea id="input" placeholder='{"name":"Ali","city":"Karachi"}'></textarea>
+
+    <div class="buttons">
+      <button class="primary" onclick="encodeJSON()">JSON für URL kodieren</button>
+      <button class="secondary" onclick="copyResult()">Ergebnis kopieren</button>
+      <button class="secondary" onclick="downloadResult()">Herunterladen</button>
+      <button class="secondary" onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <label for="output"><strong>Kodiertes JSON</strong></label>
+    <textarea id="output" readonly placeholder="Das kodierte Ergebnis erscheint hier..."></textarea>
+
+    <h2>So verwenden Sie den JSON URL Encoder</h2>
+
+    <ol>
+      <li>Geben Sie gültiges JSON in das Eingabefeld ein.</li>
+      <li>Klicken Sie auf „JSON für URL kodieren“.</li>
+      <li>Das JSON wird mit URL-Encoding kodiert.</li>
+      <li>Kopieren Sie das Ergebnis oder laden Sie es als Textdatei herunter.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+
+    <h3>Was macht der JSON URL Encoder?</h3>
+    <p>
+      Er kodiert gültiges JSON mit URL-Encoding, damit es sicher als Bestandteil
+      einer URL oder eines URL-Parameters verwendet werden kann.
+    </p>
+
+    <h3>Werden meine Daten hochgeladen?</h3>
+    <p>
+      Nein. Die Verarbeitung erfolgt vollständig lokal in Ihrem Browser.
+      Ihre JSON-Daten werden nicht an einen Server gesendet.
+    </p>
+
+    <h3>Was passiert bei ungültigem JSON?</h3>
+    <p>
+      Das Tool zeigt eine Fehlermeldung an und erstellt kein Ergebnis,
+      bis gültiges JSON eingegeben wurde.
+    </p>
+
+    <div class="privacy">
+      <strong>Datenschutz:</strong>
+      Ihre Daten bleiben auf Ihrem Gerät. Dieses Tool verarbeitet Ihre Eingaben
+      direkt in Ihrem Browser und lädt keine JSON-Daten auf einen Server hoch.
+    </div>
+
+    <h2>Weitere Entwickler-Tools</h2>
+
+    <div class="related">
+      <a href="json-formatierer.html">JSON Formatierer</a>
+      <a href="json-zu-base64.html">JSON zu Base64</a>
+      <a href="json-zu-csv.html">JSON zu CSV</a>
+      <a href="json-zu-html.html">JSON zu HTML</a>
+      <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+      <a href="json-zu-markdown.html">JSON zu Markdown</a>
+      <a href="json-zu-sql.html">JSON zu SQL</a>
+      <a href="json-zu-text.html">JSON zu Text</a>
+      <a href="json-zu-toml.html">JSON zu TOML</a>
+      <a href="json-zu-tsv.html">JSON zu TSV</a>
+      <a href="json-zu-xml.html">JSON zu XML</a>
+      <a href="json-zu-yaml.html">JSON zu YAML</a>
+      <a href="base64-zu-json.html">Base64 zu JSON</a>
+      <a href="json-url-decoder.html">JSON URL Decoder</a>
+      <a href="text-zu-json.html">Text zu JSON</a>
+    </div>
+
+    <p style="margin-top:25px;">
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        ← Zur Startseite
+      </a>
+    </p>
+
+  </div>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+</div>
+
+<script>
+  function encodeJSON() {
+    const input = document.getElementById("input").value.trim();
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input) {
+      message.textContent = "Bitte geben Sie JSON ein.";
+      message.classList.add("error");
+      output.value = "";
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(input);
+
+      const normalizedJSON = JSON.stringify(parsed);
+      output.value = encodeURIComponent(normalizedJSON);
+
+      message.textContent = "JSON wurde erfolgreich für die URL kodiert.";
+      message.classList.add("success");
+    } catch (error) {
+      output.value = "";
+      message.textContent = "Ungültiges JSON. Bitte überprüfen Sie Ihre Eingabe.";
+      message.classList.add("error");
+    }
+  }
+
+  async function copyResult() {
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    if (!output.value) {
+      message.textContent = "Kein Ergebnis zum Kopieren vorhanden.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(output.value);
+      message.textContent = "Ergebnis wurde kopiert.";
+      message.className = "message success";
+    } catch (error) {
+      output.select();
+      document.execCommand("copy");
+      message.textContent = "Ergebnis wurde kopiert.";
+      message.className = "message success";
+    }
+  }
+
+  function downloadResult() {
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    if (!output.value) {
+      message.textContent = "Kein Ergebnis zum Herunterladen vorhanden.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob([output.value], {
+      type: "text/plain;charset=utf-8"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = "kodiertes-json.txt";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+    message.textContent = "Datei wurde heruntergeladen.";
+    message.className = "message success";
+  }
+
+  function clearAll() {
+    document.getElementById("input").value = "";
+    document.getElementById("output").value = "";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+  }
+</script>
+
+</body>
+</html>
