@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON zu JSONL Konverter – JSON in JSONL umwandeln</title>
+  <meta name="description" content="Kostenloser JSON zu JSONL Konverter. Wandeln Sie JSON-Arrays direkt im Browser in JSONL um. Schnell, sicher und ohne Datei-Upload.">
+  <meta name="keywords" content="JSON zu JSONL, JSONL Konverter, JSON in JSONL umwandeln, JSON Lines, JSON Lines Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-zu-jsonl.html">
+
+  <meta property="og:title" content="JSON zu JSONL Konverter">
+  <meta property="og:description" content="JSON kostenlos in JSONL umwandeln. Die Verarbeitung erfolgt direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-zu-jsonl.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich JSON in JSONL umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie ein JSON-Array ein und klicken Sie auf JSON in JSONL umwandeln. Jedes Objekt wird in eine eigene JSONL-Zeile umgewandelt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist JSONL?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JSONL steht für JSON Lines. Dabei befindet sich jedes JSON-Objekt in einer eigenen Zeile."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Konvertierung erfolgt vollständig in Ihrem Browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1000px, 94%);
+      margin: 30px auto;
+    }
+
+    header,
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 270px;
+      padding: 14px;
+      border: 1px solid #ccd2d8;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 15px;
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      background: #1f2937;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    pre {
+      min-height: 200px;
+      padding: 18px;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1558b0;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      header,
+      .card {
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>JSON zu JSONL Konverter</h1>
+    <p>
+      Wandeln Sie ein JSON-Array kostenlos in JSONL (JSON Lines) um.
+      Jedes JSON-Objekt wird in eine eigene Zeile geschrieben.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>JSON-Eingabe</h2>
+
+    <textarea id="jsonInput" placeholder='Beispiel:
+[
+  {"name":"Ali","age":25,"city":"Karachi"},
+  {"name":"Sara","age":28,"city":"Lahore"}
+]'></textarea>
+
+    <div class="buttons">
+      <button onclick="convertJSON()">JSON in JSONL umwandeln</button>
+      <button onclick="copyJSONL()">JSONL kopieren</button>
+      <button onclick="downloadJSONL()">JSONL herunterladen</button>
+      <button onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+  </section>
+
+  <section class="card">
+    <h2>JSONL-Ergebnis</h2>
+    <pre id="output"></pre>
+  </section>
+
+  <section class="card">
+    <h2>So verwenden Sie den JSON zu JSONL Konverter</h2>
+
+    <ol>
+      <li>Fügen Sie ein gültiges JSON-Array ein.</li>
+      <li>Klicken Sie auf „JSON in JSONL umwandeln“.</li>
+      <li>Jedes Objekt wird in eine eigene JSONL-Zeile umgewandelt.</li>
+      <li>Kopieren oder laden Sie das Ergebnis herunter.</li>
+    </ol>
+
+    <p>
+      JSONL eignet sich besonders für große Datensätze,
+      Datenimporte, Protokolle und zeilenweise Verarbeitung.
+    </p>
+
+    <p>
+      Die Verarbeitung erfolgt vollständig in Ihrem Browser.
+      Ihre Daten werden nicht auf einen Server hochgeladen.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Was ist JSONL?</h3>
+    <p>
+      JSONL steht für JSON Lines. Jedes JSON-Objekt befindet sich dabei
+      in einer eigenen Zeile.
+    </p>
+
+    <h3>Welches JSON-Format wird unterstützt?</h3>
+    <p>
+      Dieses Tool erwartet ein JSON-Array mit Objekten.
+    </p>
+
+    <h3>Werden meine Daten gespeichert?</h3>
+    <p>
+      Nein. Die Konvertierung erfolgt lokal in Ihrem Browser.
+    </p>
+  </section>
+
+  <section class="card related">
+    <h2>Verwandte Tools</h2>
+
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-zu-csv.html">JSON zu CSV</a>
+    <a href="json-zu-html.html">JSON zu HTML</a>
+    <a href="json-zu-markdown.html">JSON zu Markdown</a>
+    <a href="json-zu-sql.html">JSON zu SQL</a>
+    <a href="json-zu-text.html">JSON zu Text</a>
+    <a href="json-zu-tsv.html">JSON zu TSV</a>
+    <a href="jsonl-zu-json.html">JSONL zu JSON</a>
+  </section>
+
+  <section class="card">
+    <h2>Datenschutz</h2>
+
+    <p>
+      Dieses Tool verarbeitet Ihre Daten direkt auf Ihrem Gerät.
+      Es ist kein Upload zu einem Server erforderlich.
+    </p>
+
+    <p>
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        Zur Startseite
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+
+</div>
+
+<script>
+  let generatedJSONL = "";
+
+  function convertJSON() {
+    const input = document.getElementById("jsonInput").value.trim();
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input) {
+      output.textContent = "";
+      message.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    try {
+      const data = JSON.parse(input);
+
+      if (!Array.isArray(data)) {
+        throw new Error("Das JSON muss ein Array enthalten.");
+      }
+
+      if (data.length === 0) {
+        throw new Error("Das JSON-Array ist leer.");
+      }
+
+      const invalidItem = data.find(
+        item => item === null || typeof item !== "object"
+      );
+
+      if (invalidItem !== undefined) {
+        throw new Error(
+          "Jedes Element des JSON-Arrays muss ein Objekt sein."
+        );
+      }
+
+      generatedJSONL = data
+        .map(item => JSON.stringify(item))
+        .join("\n");
+
+      output.textContent = generatedJSONL;
+
+      message.textContent =
+        "JSON wurde erfolgreich in JSONL umgewandelt.";
+      message.classList.add("success");
+
+    } catch (error) {
+      generatedJSONL = "";
+      output.textContent = "";
+
+      message.textContent =
+        "Ungültiges JSON: " + error.message;
+      message.classList.add("error");
+    }
+  }
+
+  async function copyJSONL() {
+    if (!generatedJSONL) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in JSONL.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(generatedJSONL);
+
+      const message = document.getElementById("message");
+      message.textContent =
+        "JSONL wurde in die Zwischenablage kopiert.";
+      message.className = "message success";
+
+    } catch (error) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Kopieren war nicht möglich.";
+      message.className = "message error";
+    }
+  }
+
+  function downloadJSONL() {
+    if (!generatedJSONL) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in JSONL.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob(
+      [generatedJSONL],
+      { type: "application/jsonl;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "konvertierte-daten.jsonl";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    document.getElementById("jsonInput").value = "";
+    document.getElementById("output").textContent = "";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+
+    generatedJSONL = "";
+  }
+</script>
+
+</body>
+</html>
