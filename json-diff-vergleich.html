@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON Diff Vergleich – JSON Unterschiede online vergleichen</title>
+  <meta name="description" content="Vergleichen Sie zwei JSON-Dokumente kostenlos und finden Sie Unterschiede direkt im Browser. Schnell, sicher und ohne Upload.">
+  <meta name="keywords" content="JSON Diff, JSON Vergleich, JSON Unterschiede, JSON vergleichen, JSON Diff Tool, JSON Compare">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-diff-vergleich.html">
+
+  <meta property="og:title" content="JSON Diff Vergleich – JSON vergleichen">
+  <meta property="og:description" content="Zwei JSON-Dokumente kostenlos vergleichen und Unterschiede direkt im Browser finden.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-diff-vergleich.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was macht der JSON Diff Vergleich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Tool vergleicht zwei JSON-Dokumente und zeigt Unterschiede bei Eigenschaften, Werten und Strukturen an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Vergleich erfolgt vollständig lokal in Ihrem Browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich JSON-Objekte und Arrays vergleichen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Das Tool kann gültige JSON-Objekte, Arrays und andere gültige JSON-Werte miteinander vergleichen."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 2rem;
+    }
+
+    .intro {
+      color: #5b6470;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .input-box {
+      min-width: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      resize: vertical;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 15px;
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 18px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      background: #2563eb;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .secondary {
+      background: #64748b;
+    }
+
+    .success {
+      color: #15803d;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .error {
+      color: #dc2626;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .summary {
+      padding: 12px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .diff-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .diff-item {
+      border-left: 4px solid #2563eb;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .diff-path {
+      font-family: Consolas, Monaco, monospace;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .old-value {
+      color: #b91c1c;
+      margin: 3px 0;
+    }
+
+    .new-value {
+      color: #15803d;
+      margin: 3px 0;
+    }
+
+    .same {
+      color: #15803d;
+      font-weight: bold;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .related {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .related a {
+      display: block;
+      background: #f1f5f9;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .inputs {
+        grid-template-columns: 1fr;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <h1>JSON Diff Vergleich</h1>
+      <p class="intro">
+        Vergleichen Sie zwei JSON-Dokumente und finden Sie Unterschiede
+        bei Werten und Strukturen direkt im Browser.
+      </p>
+    </header>
+
+    <section class="card">
+      <div class="inputs">
+
+        <div class="input-box">
+          <label for="json1">JSON 1</label>
+          <textarea
+            id="json1"
+            placeholder='{
+  "name": "Ali",
+  "age": 25,
+  "city": "Karachi"
+}'></textarea>
+        </div>
+
+        <div class="input-box">
+          <label for="json2">JSON 2</label>
+          <textarea
+            id="json2"
+            placeholder='{
+  "name": "Ali",
+  "age": 26,
+  "city": "Lahore"
+}'></textarea>
+        </div>
+
+      </div>
+
+      <div class="buttons">
+        <button onclick="compareJSON()">JSON vergleichen</button>
+        <button class="secondary" onclick="clearAll()">Alles löschen</button>
+      </div>
+
+      <div id="message"></div>
+    </section>
+
+    <section class="card">
+      <h2>Vergleichsergebnis</h2>
+
+      <div id="summary" class="summary">
+        Noch kein Vergleich durchgeführt.
+      </div>
+
+      <div id="diffList" class="diff-list"></div>
+    </section>
+
+    <section class="card">
+      <h2>So verwenden Sie den JSON Diff Vergleich</h2>
+
+      <ol>
+        <li>Fügen Sie das erste JSON-Dokument in „JSON 1“ ein.</li>
+        <li>Fügen Sie das zweite JSON-Dokument in „JSON 2“ ein.</li>
+        <li>Klicken Sie auf „JSON vergleichen“.</li>
+        <li>Das Tool zeigt hinzugefügte, entfernte und geänderte Werte an.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Häufig gestellte Fragen</h2>
+
+      <h3>Was ist ein JSON Diff Tool?</h3>
+      <p>
+        Ein JSON Diff Tool vergleicht zwei JSON-Dokumente und zeigt,
+        welche Eigenschaften oder Werte unterschiedlich sind.
+      </p>
+
+      <h3>Werden meine JSON-Daten gespeichert?</h3>
+      <p>
+        Nein. Der Vergleich erfolgt vollständig lokal in Ihrem Browser.
+        Die eingegebenen Daten werden nicht an einen Server übertragen.
+      </p>
+
+      <h3>Was passiert bei identischem JSON?</h3>
+      <p>
+        Wenn beide JSON-Dokumente identisch sind, zeigt das Tool an,
+        dass keine Unterschiede gefunden wurden.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Verwandte Tools</h2>
+
+      <div class="related">
+        <a href="json-formatierer.html">JSON Formatierer</a>
+        <a href="json-zu-csv.html">JSON zu CSV</a>
+        <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+        <a href="json-zu-markdown.html">JSON zu Markdown</a>
+        <a href="json-zu-sql.html">JSON zu SQL</a>
+        <a href="json-zu-tsv.html">JSON zu TSV</a>
+        <a href="json-zu-xml.html">JSON zu XML</a>
+        <a href="json-zu-yaml.html">JSON zu YAML</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Datenschutz</h2>
+      <p>
+        Ihre JSON-Daten bleiben auf Ihrem Gerät. Der Vergleich erfolgt
+        vollständig lokal in Ihrem Browser. Es werden keine Daten
+        an unseren Server übertragen.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        <a href="https://toolforge1.github.io/entwickler-tools/">
+          Zur Startseite
+        </a>
+      </p>
+      <p>© 2026 Entwickler Tools</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function valueToText(value) {
+      if (value === undefined) {
+        return "nicht vorhanden";
+      }
+
+      return JSON.stringify(value);
+    }
+
+    function compareValues(a, b, path, differences) {
+      if (
+        typeof a !== typeof b ||
+        Array.isArray(a) !== Array.isArray(b) ||
+        (a === null) !== (b === null)
+      ) {
+        differences.push({
+          path: path,
+          type: "changed",
+          oldValue: a,
+          newValue: b
+        });
+        return;
+      }
+
+      if (
+        a === null ||
+        b === null ||
+        typeof a !== "object"
+      ) {
+        if (a !== b) {
+          differences.push({
+            path: path,
+            type: "changed",
+            oldValue: a,
+            newValue: b
+          });
+        }
+        return;
+      }
+
+      if (Array.isArray(a) && Array.isArray(b)) {
+        const maxLength = Math.max(a.length, b.length);
+
+        for (let i = 0; i < maxLength; i++) {
+          const currentPath = path + "[" + i + "]";
+
+          if (i >= a.length) {
+            differences.push({
+              path: currentPath,
+              type: "added",
+              oldValue: undefined,
+              newValue: b[i]
+            });
+          } else if (i >= b.length) {
+            differences.push({
+              path: currentPath,
+              type: "removed",
+              oldValue: a[i],
+              newValue: undefined
+            });
+          } else {
+            compareValues(
+              a[i],
+              b[i],
+              currentPath,
+              differences
+            );
+          }
+        }
+
+        return;
+      }
+
+      const keys = new Set([
+        ...Object.keys(a),
+        ...Object.keys(b)
+      ]);
+
+      keys.forEach(key => {
+        const currentPath =
+          path === "$"
+            ? "$." + key
+            : path + "." + key;
+
+        if (!Object.prototype.hasOwnProperty.call(a, key)) {
+          differences.push({
+            path: currentPath,
+            type: "added",
+            oldValue: undefined,
+            newValue: b[key]
+          });
+        } else if (!Object.prototype.hasOwnProperty.call(b, key)) {
+          differences.push({
+            path: currentPath,
+            type: "removed",
+            oldValue: a[key],
+            newValue: undefined
+          });
+        } else {
+          compareValues(
+            a[key],
+            b[key],
+            currentPath,
+            differences
+          );
+        }
+      });
+    }
+
+    function compareJSON() {
+      const input1 = document.getElementById("json1").value.trim();
+      const input2 = document.getElementById("json2").value.trim();
+      const message = document.getElementById("message");
+      const summary = document.getElementById("summary");
+      const diffList = document.getElementById("diffList");
+
+      message.textContent = "";
+      message.className = "";
+      summary.textContent = "";
+      diffList.innerHTML = "";
+
+      if (!input1 || !input2) {
+        message.textContent =
+          "Bitte geben Sie beide JSON-Dokumente ein.";
+        message.className = "error";
+        summary.textContent =
+          "Vergleich konnte nicht durchgeführt werden.";
+        return;
+      }
+
+      let json1;
+      let json2;
+
+      try {
+        json1 = JSON.parse(input1);
+      } catch (error) {
+        message.textContent =
+          "JSON 1 ist ungültig: " + error.message;
+        message.className = "error";
+        summary.textContent =
+          "JSON 1 konnte nicht verarbeitet werden.";
+        return;
+      }
+
+      try {
+        json2 = JSON.parse(input2);
+      } catch (error) {
+        message.textContent =
+          "JSON 2 ist ungültig: " + error.message;
+        message.className = "error";
+        summary.textContent =
+          "JSON 2 konnte nicht verarbeitet werden.";
+        return;
+      }
+
+      const differences = [];
+
+      compareValues(
+        json1,
+        json2,
+        "$",
+        differences
+      );
+
+      if (differences.length === 0) {
+        summary.innerHTML =
+          '<span class="same">✓ Keine Unterschiede gefunden. Beide JSON-Dokumente sind identisch.</span>';
+
+        message.textContent =
+          "JSON erfolgreich verglichen.";
+        message.className = "success";
+        return;
+      }
+
+      summary.textContent =
+        `${differences.length} Unterschied(e) gefunden.`;
+
+      differences.forEach(diff => {
+        const item = document.createElement("div");
+        item.className = "diff-item";
+
+        const path = document.createElement("div");
+        path.className = "diff-path";
+        path.textContent = diff.path;
+
+        item.appendChild(path);
+
+        if (diff.type === "changed") {
+          const oldValue = document.createElement("div");
+          oldValue.className = "old-value";
+          oldValue.textContent =
+            "− Alt: " + valueToText(diff.oldValue);
+
+          const newValue = document.createElement("div");
+          newValue.className = "new-value";
+          newValue.textContent =
+            "+ Neu: " + valueToText(diff.newValue);
+
+          item.appendChild(oldValue);
+          item.appendChild(newValue);
+
+        } else if (diff.type === "added") {
+          const newValue = document.createElement("div");
+          newValue.className = "new-value";
+          newValue.textContent =
+            "+ Hinzugefügt: " + valueToText(diff.newValue);
+
+          item.appendChild(newValue);
+
+        } else if (diff.type === "removed") {
+          const oldValue = document.createElement("div");
+          oldValue.className = "old-value";
+          oldValue.textContent =
+            "− Entfernt: " + valueToText(diff.oldValue);
+
+          item.appendChild(oldValue);
+        }
+
+        diffList.appendChild(item);
+      });
+
+      message.textContent =
+        "JSON erfolgreich verglichen.";
+      message.className = "success";
+    }
+
+    function clearAll() {
+      document.getElementById("json1").value = "";
+      document.getElementById("json2").value = "";
+      document.getElementById("message").textContent = "";
+      document.getElementById("summary").textContent =
+        "Noch kein Vergleich durchgeführt.";
+      document.getElementById("diffList").innerHTML = "";
+    }
+  </script>
+
+</body>
+</html>
