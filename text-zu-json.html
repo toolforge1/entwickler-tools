@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Text zu JSON Konverter – Text in JSON umwandeln</title>
+  <meta name="description" content="Kostenloser Text zu JSON Konverter. Wandeln Sie strukturierten Text direkt im Browser in JSON um. Schnell, einfach und ohne Upload Ihrer Daten.">
+  <meta name="keywords" content="Text zu JSON, Text JSON Konverter, Text in JSON umwandeln, Text to JSON, JSON Konverter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/text-zu-json.html">
+
+  <meta property="og:title" content="Text zu JSON Konverter">
+  <meta property="og:description" content="Text kostenlos und direkt im Browser in JSON umwandeln.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/text-zu-json.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was macht der Text zu JSON Konverter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Tool wandelt einfache strukturierte Textzeilen in ein JSON-Array um."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie muss der Text aufgebaut sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jede Zeile wird als eigener Wert übernommen. Mehrere Werte können durch Kommas getrennt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Konvertierung erfolgt vollständig lokal in Ihrem Browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 32px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-size: 23px;
+    }
+
+    h3 {
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 240px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: none;
+      padding: 11px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .primary {
+      background: #222;
+      color: white;
+    }
+
+    .secondary {
+      background: #e9edf2;
+      color: #222;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .message {
+      margin: 12px 0;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    .privacy {
+      background: #f0f7f2;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1769aa;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      background: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>Text zu JSON Konverter</h1>
+
+    <p>
+      Wandeln Sie einfachen strukturierten Text schnell und kostenlos in JSON um.
+      Die Verarbeitung erfolgt direkt in Ihrem Browser.
+    </p>
+
+    <label for="input"><strong>Text-Eingabe</strong></label>
+    <textarea id="input" placeholder="Apfel
+Banane
+Orange"></textarea>
+
+    <div class="buttons">
+      <button class="primary" onclick="convertText()">Text in JSON umwandeln</button>
+      <button class="secondary" onclick="copyResult()">JSON kopieren</button>
+      <button class="secondary" onclick="downloadResult()">JSON herunterladen</button>
+      <button class="secondary" onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <label for="output"><strong>JSON-Ergebnis</strong></label>
+    <textarea id="output" readonly placeholder="Das JSON-Ergebnis erscheint hier..."></textarea>
+
+    <h2>So verwenden Sie den Text zu JSON Konverter</h2>
+
+    <ol>
+      <li>Geben Sie Text in das Eingabefeld ein.</li>
+      <li>Jede nicht leere Zeile wird zu einem JSON-Array-Element.</li>
+      <li>Klicken Sie auf „Text in JSON umwandeln“.</li>
+      <li>Kopieren Sie das Ergebnis oder laden Sie die JSON-Datei herunter.</li>
+    </ol>
+
+    <h2>Beispiel</h2>
+
+    <p>Aus diesem Text:</p>
+
+    <pre>Apfel
+Banane
+Orange</pre>
+
+    <p>entsteht:</p>
+
+    <pre>[
+  "Apfel",
+  "Banane",
+  "Orange"
+]</pre>
+
+    <h2>FAQ</h2>
+
+    <h3>Was macht der Text zu JSON Konverter?</h3>
+    <p>
+      Das Tool wandelt Textzeilen in ein JSON-Array um.
+      Jede nicht leere Zeile wird als eigener JSON-String gespeichert.
+    </p>
+
+    <h3>Wie werden leere Zeilen behandelt?</h3>
+    <p>
+      Leere Zeilen werden automatisch ignoriert.
+    </p>
+
+    <h3>Werden meine Daten hochgeladen?</h3>
+    <p>
+      Nein. Die Konvertierung erfolgt vollständig lokal in Ihrem Browser.
+      Ihre Daten werden nicht an einen Server gesendet.
+    </p>
+
+    <div class="privacy">
+      <strong>Datenschutz:</strong>
+      Ihre Daten bleiben auf Ihrem Gerät. Dieses Tool verarbeitet Ihre Eingaben
+      direkt im Browser und lädt keine Daten auf einen Server hoch.
+    </div>
+
+    <h2>Weitere Entwickler-Tools</h2>
+
+    <div class="related">
+      <a href="json-formatierer.html">JSON Formatierer</a>
+      <a href="json-zu-text.html">JSON zu Text</a>
+      <a href="json-zu-csv.html">JSON zu CSV</a>
+      <a href="csv-zu-json.html">CSV zu JSON</a>
+      <a href="tsv-zu-json.html">TSV zu JSON</a>
+      <a href="jsonl-zu-json.html">JSONL zu JSON</a>
+      <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+      <a href="json-zu-markdown.html">JSON zu Markdown</a>
+      <a href="json-diff-vergleich.html">JSON Diff Vergleich</a>
+    </div>
+
+    <p style="margin-top:25px;">
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        ← Zur Startseite
+      </a>
+    </p>
+
+  </div>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+</div>
+
+<script>
+  function convertText() {
+    const input = document.getElementById("input").value;
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    output.value = "";
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input.trim()) {
+      message.textContent = "Bitte geben Sie Text ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    const lines = input
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(line => line !== "");
+
+    if (lines.length === 0) {
+      message.textContent = "Keine gültigen Textdaten gefunden.";
+      message.classList.add("error");
+      return;
+    }
+
+    output.value = JSON.stringify(lines, null, 2);
+
+    message.textContent =
+      lines.length + " Textzeile(n) wurden erfolgreich in JSON umgewandelt.";
+    message.classList.add("success");
+  }
+
+  async function copyResult() {
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    if (!output.value) {
+      message.textContent = "Kein JSON-Ergebnis zum Kopieren vorhanden.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(output.value);
+      message.textContent = "JSON wurde kopiert.";
+      message.className = "message success";
+    } catch (error) {
+      output.select();
+      document.execCommand("copy");
+      message.textContent = "JSON wurde kopiert.";
+      message.className = "message success";
+    }
+  }
+
+  function downloadResult() {
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    if (!output.value) {
+      message.textContent = "Kein JSON-Ergebnis zum Herunterladen vorhanden.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob([output.value], {
+      type: "application/json;charset=utf-8"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = "konvertierte-daten.json";
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+    message.textContent = "JSON-Datei wurde heruntergeladen.";
+    message.className = "message success";
+  }
+
+  function clearAll() {
+    document.getElementById("input").value = "";
+    document.getElementById("output").value = "";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+  }
+</script>
+
+</body>
+</html>
