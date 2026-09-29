@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON zu SQL Konverter – JSON in SQL umwandeln</title>
+  <meta name="description" content="Kostenloser JSON zu SQL Konverter. Wandeln Sie JSON-Daten direkt im Browser in SQL INSERT-Anweisungen um. Keine Uploads und keine Registrierung.">
+  <meta name="keywords" content="JSON zu SQL, JSON SQL Konverter, JSON in SQL umwandeln, JSON INSERT, SQL Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-zu-sql.html">
+
+  <meta property="og:title" content="JSON zu SQL Konverter">
+  <meta property="og:description" content="JSON kostenlos in SQL INSERT-Anweisungen umwandeln. Schnell, sicher und direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-zu-sql.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich JSON in SQL umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie ein JSON-Array ein, geben Sie den Tabellennamen ein und klicken Sie auf JSON in SQL umwandeln."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche SQL-Anweisungen werden erzeugt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Tool erzeugt SQL INSERT INTO-Anweisungen für die Objekte im JSON-Array."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Verarbeitung erfolgt vollständig in Ihrem Browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1000px, 94%);
+      margin: 30px auto;
+    }
+
+    header,
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccd2d8;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    input {
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      min-height: 270px;
+      resize: vertical;
+      font-family: monospace;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      background: #1f2937;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    pre {
+      min-height: 200px;
+      padding: 18px;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1558b0;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      header,
+      .card {
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>JSON zu SQL Konverter</h1>
+    <p>
+      Wandeln Sie JSON-Daten kostenlos in SQL INSERT-Anweisungen um.
+      Die Verarbeitung erfolgt direkt in Ihrem Browser.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>JSON-Eingabe</h2>
+
+    <label for="tableName">Tabellenname</label>
+    <input
+      id="tableName"
+      type="text"
+      value="users"
+      placeholder="z. B. users"
+    >
+
+    <label for="jsonInput">JSON-Daten</label>
+    <textarea id="jsonInput" placeholder='Beispiel:
+[
+  {"name":"Ali","age":25,"city":"Karachi"},
+  {"name":"Sara","age":28,"city":"Lahore"}
+]'></textarea>
+
+    <div class="buttons">
+      <button onclick="convertJSON()">JSON in SQL umwandeln</button>
+      <button onclick="copySQL()">SQL kopieren</button>
+      <button onclick="downloadSQL()">SQL herunterladen</button>
+      <button onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+  </section>
+
+  <section class="card">
+    <h2>SQL-Ergebnis</h2>
+    <pre id="sqlOutput"></pre>
+  </section>
+
+  <section class="card">
+    <h2>So verwenden Sie den JSON zu SQL Konverter</h2>
+
+    <ol>
+      <li>Geben Sie den Namen der SQL-Tabelle ein.</li>
+      <li>Fügen Sie ein JSON-Array mit Objekten ein.</li>
+      <li>Klicken Sie auf „JSON in SQL umwandeln“.</li>
+      <li>Kopieren oder laden Sie die erzeugten SQL-Anweisungen herunter.</li>
+    </ol>
+
+    <p>
+      Für jedes JSON-Objekt wird eine eigene
+      <code>INSERT INTO</code>-Anweisung erstellt.
+    </p>
+
+    <p>
+      Verschachtelte Objekte und Arrays werden als JSON-Text gespeichert.
+    </p>
+
+    <p>
+      Die Verarbeitung erfolgt vollständig lokal in Ihrem Browser.
+      Ihre Daten werden nicht auf einen Server hochgeladen.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie kann ich JSON in SQL umwandeln?</h3>
+    <p>
+      Geben Sie einen Tabellennamen ein, fügen Sie Ihr JSON-Array ein
+      und klicken Sie auf „JSON in SQL umwandeln“.
+    </p>
+
+    <h3>Welche SQL-Anweisungen werden erzeugt?</h3>
+    <p>
+      Das Tool erzeugt SQL-INSERT-Anweisungen für die einzelnen
+      Objekte im JSON-Array.
+    </p>
+
+    <h3>Werden meine JSON-Daten gespeichert?</h3>
+    <p>
+      Nein. Die Konvertierung findet direkt in Ihrem Browser statt.
+    </p>
+  </section>
+
+  <section class="card related">
+    <h2>Verwandte Tools</h2>
+
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-zu-csv.html">JSON zu CSV</a>
+    <a href="json-zu-html.html">JSON zu HTML</a>
+    <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+    <a href="json-zu-markdown.html">JSON zu Markdown</a>
+    <a href="json-zu-text.html">JSON zu Text</a>
+    <a href="csv-zu-sql.html">CSV zu SQL</a>
+    <a href="csv-zu-json.html">CSV zu JSON</a>
+  </section>
+
+  <section class="card">
+    <h2>Datenschutz</h2>
+
+    <p>
+      Dieses Tool verarbeitet Ihre JSON-Daten direkt auf Ihrem Gerät.
+      Es ist kein Upload zu einem Server erforderlich.
+    </p>
+
+    <p>
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        Zur Startseite
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+
+</div>
+
+<script>
+  let generatedSQL = "";
+
+  function quoteIdentifier(identifier) {
+    return "`" + identifier.replace(/`/g, "``") + "`";
+  }
+
+  function sqlValue(value) {
+    if (value === null || value === undefined) {
+      return "NULL";
+    }
+
+    if (typeof value === "boolean") {
+      return value ? "TRUE" : "FALSE";
+    }
+
+    if (typeof value === "number") {
+      return Number.isFinite(value) ? String(value) : "NULL";
+    }
+
+    if (typeof value === "object") {
+      value = JSON.stringify(value);
+    }
+
+    const text = String(value).replace(/'/g, "''");
+
+    return "'" + text + "'";
+  }
+
+  function convertJSON() {
+    const input = document.getElementById("jsonInput").value.trim();
+    const tableNameInput = document.getElementById("tableName").value.trim();
+    const output = document.getElementById("sqlOutput");
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!tableNameInput) {
+      output.textContent = "";
+      message.textContent = "Bitte geben Sie einen Tabellennamen ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    if (!/^[A-Za-z_][A-Za-z0-9_$]*$/.test(tableNameInput)) {
+      output.textContent = "";
+      message.textContent =
+        "Der Tabellenname enthält ungültige Zeichen.";
+      message.classList.add("error");
+      return;
+    }
+
+    if (!input) {
+      output.textContent = "";
+      message.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    try {
+      const data = JSON.parse(input);
+
+      if (!Array.isArray(data)) {
+        throw new Error("Das JSON muss ein Array enthalten.");
+      }
+
+      if (data.length === 0) {
+        throw new Error("Das JSON-Array ist leer.");
+      }
+
+      const invalidItem = data.find(
+        item =>
+          item === null ||
+          typeof item !== "object" ||
+          Array.isArray(item)
+      );
+
+      if (invalidItem !== undefined) {
+        throw new Error(
+          "Jedes Element des JSON-Arrays muss ein Objekt sein."
+        );
+      }
+
+      const columns = [];
+
+      data.forEach(item => {
+        Object.keys(item).forEach(key => {
+          if (!columns.includes(key)) {
+            columns.push(key);
+          }
+        });
+      });
+
+      if (columns.length === 0) {
+        throw new Error(
+          "Keine Eigenschaften in den JSON-Objekten gefunden."
+        );
+      }
+
+      const tableName = quoteIdentifier(tableNameInput);
+      const columnList = columns
+        .map(quoteIdentifier)
+        .join(", ");
+
+      const statements = data.map(item => {
+        const values = columns
+          .map(column => sqlValue(item[column]))
+          .join(", ");
+
+        return `INSERT INTO ${tableName} (${columnList}) VALUES (${values});`;
+      });
+
+      generatedSQL = statements.join("\n");
+
+      output.textContent = generatedSQL;
+
+      message.textContent =
+        "JSON wurde erfolgreich in SQL umgewandelt.";
+      message.classList.add("success");
+
+    } catch (error) {
+      generatedSQL = "";
+      output.textContent = "";
+
+      message.textContent =
+        "Ungültiges JSON: " + error.message;
+      message.classList.add("error");
+    }
+  }
+
+  async function copySQL() {
+    if (!generatedSQL) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in SQL.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(generatedSQL);
+
+      const message = document.getElementById("message");
+      message.textContent =
+        "SQL wurde in die Zwischenablage kopiert.";
+      message.className = "message success";
+
+    } catch (error) {
+      const message = document.getElementById("message");
+      message.textContent = "Kopieren war nicht möglich.";
+      message.className = "message error";
+    }
+  }
+
+  function downloadSQL() {
+    if (!generatedSQL) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in SQL.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob(
+      [generatedSQL],
+      { type: "text/sql;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "konvertierte-daten.sql";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    document.getElementById("jsonInput").value = "";
+    document.getElementById("sqlOutput").textContent = "";
+    document.getElementById("tableName").value = "users";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+
+    generatedSQL = "";
+  }
+</script>
+
+</body>
+</html>
