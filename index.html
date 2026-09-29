@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Entwickler Tools – Kostenlose CSV-, JSON- & Daten-Tools</title>
+
+  <meta name="description" content="Kostenlose browserbasierte Entwickler-Tools für CSV, JSON, JSONL, XML, YAML, TOML, TSV, Base64 und mehr. Schnell, einfach und ohne Datei-Upload.">
+
+  <meta name="keywords" content="CSV Tools, JSON Tools, CSV zu JSON, JSON zu CSV, JSON Formatter, JSONL, XML zu JSON, YAML zu JSON, TOML zu JSON, TSV zu JSON, Entwickler Tools">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/">
+
+  <meta property="og:title" content="Entwickler Tools – Kostenlose Daten-Tools">
+  <meta property="og:description" content="Kostenlose browserbasierte Tools für CSV, JSON und andere Datenformate. Keine Datei-Uploads erforderlich.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 45px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 36px;
+    }
+
+    header p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 17px;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 30px 18px;
+    }
+
+    .intro {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .intro h2 {
+      margin-top: 0;
+    }
+
+    .category {
+      margin-bottom: 35px;
+    }
+
+    .category h2 {
+      font-size: 25px;
+      margin-bottom: 15px;
+      color: #111827;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .tool-card {
+      display: block;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      text-decoration: none;
+      color: #111827;
+      border: 1px solid #e5e7eb;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(0,0,0,0.08);
+    }
+
+    .tool-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .tool-card p {
+      margin: 0;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .how-to,
+    .faq,
+    .privacy {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    .how-to h2,
+    .faq h2,
+    .privacy h2 {
+      margin-top: 0;
+    }
+
+    .how-to ol {
+      padding-left: 22px;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+    }
+
+    .faq-item h3 {
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      header p {
+        font-size: 15px;
+      }
+
+      .category h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Entwickler Tools",
+    "url": "https://toolforge1.github.io/entwickler-tools/",
+    "description": "Kostenlose browserbasierte Entwickler-Tools für CSV, JSON und verschiedene Datenformate."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Entwickler Tools",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "CSV zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/csv-zu-json.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "CSV zu HTML",
+        "url": "https://toolforge1.github.io/entwickler-tools/csv-zu-html.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "CSV zu JSONL",
+        "url": "https://toolforge1.github.io/entwickler-tools/csv-zu-jsonl.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "CSV zu Markdown",
+        "url": "https://toolforge1.github.io/entwickler-tools/csv-zu-markdown.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "CSV zu SQL",
+        "url": "https://toolforge1.github.io/entwickler-tools/csv-zu-sql.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "CSV zu TSV",
+        "url": "https://toolforge1.github.io/entwickler-tools/csv-zu-tsv.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "JSON zu CSV",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-csv.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "JSON Formatierer",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-formatierer.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "name": "JSON Diff Vergleich",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-diff-vergleich.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "name": "JSON zu Base64",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-base64.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "name": "JSON zu HTML",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-html.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "name": "JSON zu JSONL",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-jsonl.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "JSON zu Markdown",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-markdown.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "JSON zu SQL",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-sql.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "JSON zu Text",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-text.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "JSON zu TOML",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-toml.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "JSON zu TSV",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-tsv.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "JSON URL Encoder",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-url-encoder.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "JSON zu XML",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-xml.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "JSON zu YAML",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-zu-yaml.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "JSON URL Decoder",
+        "url": "https://toolforge1.github.io/entwickler-tools/json-url-decoder.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "JSONL zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/jsonl-zu-json.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Text zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/text-zu-json.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "TOML zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/toml-zu-json.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 25,
+        "name": "TSV zu CSV",
+        "url": "https://toolforge1.github.io/entwickler-tools/tsv-zu-csv.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 26,
+        "name": "TSV zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/tsv-zu-json.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 27,
+        "name": "XML zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/xml-zu-json.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 28,
+        "name": "YAML zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/yaml-zu-json.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 29,
+        "name": "Base64 zu JSON",
+        "url": "https://toolforge1.github.io/entwickler-tools/base64-zu-json.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Sind die Entwickler-Tools kostenlos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Alle derzeit angebotenen Tools können kostenlos im Browser verwendet werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine Dateien auf einen Server hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Konvertierungen laufen direkt in Ihrem Browser. Dateien und eingegebene Daten müssen nicht auf einen Server hochgeladen werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich die konvertierten Daten herunterladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Die meisten Tools bieten eine Download-Funktion für das erzeugte Ergebnis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Datenformate werden unterstützt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unter anderem CSV, JSON, JSONL, HTML, Markdown, SQL, TSV, XML, YAML, TOML und Base64."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+<header>
+  <h1>Entwickler Tools</h1>
+  <p>
+    Kostenlose browserbasierte Tools für CSV, JSON und verschiedene
+    Datenformate – schnell, einfach und ohne Datei-Upload.
+  </p>
+</header>
+
+<main class="container">
+
+  <section class="intro">
+    <h2>Kostenlose Online-Tools für Entwickler</h2>
+    <p>
+      Mit diesen kostenlosen Entwickler-Tools können Sie CSV-, JSON-,
+      JSONL-, XML-, YAML-, TOML-, TSV-, Base64- und Textdaten direkt
+      in Ihrem Browser konvertieren, formatieren und bearbeiten.
+    </p>
+    <p>
+      Die Verarbeitung erfolgt direkt auf Ihrem Gerät. Sie müssen Ihre
+      Dateien nicht auf einen Server hochladen.
+    </p>
+  </section>
+
+  <section class="category">
+    <h2>CSV-Tools</h2>
+
+    <div class="tools-grid">
+
+      <a class="tool-card" href="csv-zu-json.html">
+        <h3>CSV zu JSON</h3>
+        <p>CSV-Daten schnell in JSON konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="csv-zu-html.html">
+        <h3>CSV zu HTML</h3>
+        <p>CSV-Daten als HTML-Tabelle erstellen.</p>
+      </a>
+
+      <a class="tool-card" href="csv-zu-jsonl.html">
+        <h3>CSV zu JSONL</h3>
+        <p>CSV in JSONL mit einem Objekt pro Zeile umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="csv-zu-markdown.html">
+        <h3>CSV zu Markdown</h3>
+        <p>CSV-Daten als Markdown-Tabelle ausgeben.</p>
+      </a>
+
+      <a class="tool-card" href="csv-zu-sql.html">
+        <h3>CSV zu SQL</h3>
+        <p>CSV-Daten in SQL INSERT-Anweisungen umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="csv-zu-tsv.html">
+        <h3>CSV zu TSV</h3>
+        <p>CSV-Daten in tabulatorgetrennte TSV-Daten konvertieren.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="category">
+    <h2>JSON-Tools</h2>
+
+    <div class="tools-grid">
+
+      <a class="tool-card" href="json-zu-csv.html">
+        <h3>JSON zu CSV</h3>
+        <p>JSON-Arrays in CSV-Dateien umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="json-formatierer.html">
+        <h3>JSON Formatierer</h3>
+        <p>JSON formatieren, verschönern und minimieren.</p>
+      </a>
+
+      <a class="tool-card" href="json-diff-vergleich.html">
+        <h3>JSON Diff Vergleich</h3>
+        <p>Zwei JSON-Dokumente vergleichen und Unterschiede finden.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-base64.html">
+        <h3>JSON zu Base64</h3>
+        <p>JSON validieren und in Base64 kodieren.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-html.html">
+        <h3>JSON zu HTML</h3>
+        <p>JSON-Daten als HTML-Tabelle ausgeben.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-jsonl.html">
+        <h3>JSON zu JSONL</h3>
+        <p>JSON-Arrays in JSONL umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-markdown.html">
+        <h3>JSON zu Markdown</h3>
+        <p>JSON-Daten in Markdown-Tabellen konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-sql.html">
+        <h3>JSON zu SQL</h3>
+        <p>JSON-Daten in SQL INSERT-Anweisungen umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-text.html">
+        <h3>JSON zu Text</h3>
+        <p>JSON-Daten in lesbaren Text umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-toml.html">
+        <h3>JSON zu TOML</h3>
+        <p>JSON-Objekte in TOML konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-tsv.html">
+        <h3>JSON zu TSV</h3>
+        <p>JSON-Daten in TSV konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="json-url-encoder.html">
+        <h3>JSON URL Encoder</h3>
+        <p>JSON für die Verwendung in URLs kodieren.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-xml.html">
+        <h3>JSON zu XML</h3>
+        <p>JSON-Daten in XML umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="json-zu-yaml.html">
+        <h3>JSON zu YAML</h3>
+        <p>JSON-Daten in YAML konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="json-url-decoder.html">
+        <h3>JSON URL Decoder</h3>
+        <p>URL-kodiertes JSON dekodieren und formatieren.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="category">
+    <h2>Weitere Daten-Tools</h2>
+
+    <div class="tools-grid">
+
+      <a class="tool-card" href="jsonl-zu-json.html">
+        <h3>JSONL zu JSON</h3>
+        <p>JSONL-Daten in ein JSON-Array umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="text-zu-json.html">
+        <h3>Text zu JSON</h3>
+        <p>Textzeilen in ein JSON-Array konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="toml-zu-json.html">
+        <h3>TOML zu JSON</h3>
+        <p>TOML-Daten in JSON konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="tsv-zu-csv.html">
+        <h3>TSV zu CSV</h3>
+        <p>TSV-Daten in CSV konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="tsv-zu-json.html">
+        <h3>TSV zu JSON</h3>
+        <p>TSV-Daten in JSON-Objekte umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="xml-zu-json.html">
+        <h3>XML zu JSON</h3>
+        <p>XML-Dokumente in JSON konvertieren.</p>
+      </a>
+
+      <a class="tool-card" href="yaml-zu-json.html">
+        <h3>YAML zu JSON</h3>
+        <p>YAML-Daten in JSON umwandeln.</p>
+      </a>
+
+      <a class="tool-card" href="base64-zu-json.html">
+        <h3>Base64 zu JSON</h3>
+        <p>Base64-Daten dekodieren und als JSON anzeigen.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="how-to">
+    <h2>So verwenden Sie die Tools</h2>
+
+    <ol>
+      <li>Wählen Sie das gewünschte Entwickler-Tool aus.</li>
+      <li>Fügen Sie Ihre Daten in das Eingabefeld ein.</li>
+      <li>Starten Sie die Konvertierung oder Verarbeitung.</li>
+      <li>Überprüfen Sie das erzeugte Ergebnis.</li>
+      <li>Kopieren oder laden Sie die konvertierten Daten herunter.</li>
+    </ol>
+
+    <p>
+      Die Tools sind für eine schnelle Verarbeitung direkt im Browser
+      entwickelt und benötigen keine Registrierung.
+    </p>
+  </section>
+
+  <section class="faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <div class="faq-item">
+      <h3>Sind die Entwickler-Tools kostenlos?</h3>
+      <p>
+        Ja. Alle derzeit angebotenen Tools können kostenlos im Browser
+        verwendet werden.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Werden meine Dateien auf einen Server hochgeladen?</h3>
+      <p>
+        Nein. Die Konvertierungen laufen direkt in Ihrem Browser.
+        Ihre eingegebenen Daten müssen nicht auf einen Server hochgeladen werden.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Kann ich die Ergebnisse herunterladen?</h3>
+      <p>
+        Ja. Die Tools bieten je nach Ausgabeformat eine Download-Funktion.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Welche Formate werden unterstützt?</h3>
+      <p>
+        Unterstützt werden unter anderem CSV, JSON, JSONL, HTML, Markdown,
+        SQL, TSV, XML, YAML, TOML, Base64 und Text.
+      </p>
+    </div>
+  </section>
+
+  <section class="privacy">
+    <h2>Datenschutz</h2>
+
+    <p>
+      Ihre Daten bleiben während der Verarbeitung auf Ihrem Gerät.
+      Die Konvertierung erfolgt direkt in Ihrem Browser. Es ist kein
+      Datei-Upload auf einen Server erforderlich.
+    </p>
+
+    <p>
+      Die Website verwendet Google Analytics zur Messung von Besucherzahlen
+      und zur Verbesserung der Website.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </p>
+</footer>
+
+</body>
+</html>
