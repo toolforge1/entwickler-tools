@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON Formatierer – JSON Beautifier kostenlos online</title>
+  <meta name="description" content="JSON kostenlos formatieren und verschönern. JSON Beautifier und Formatter direkt im Browser, schnell, sicher und ohne Upload.">
+  <meta name="keywords" content="JSON Formatierer, JSON Formatter, JSON Beautifier, JSON formatieren, JSON verschönern, JSON Validator">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-formatierer.html">
+
+  <meta property="og:title" content="JSON Formatierer – JSON Beautifier">
+  <meta property="og:description" content="JSON kostenlos formatieren, verschönern und prüfen – direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-formatierer.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was macht der JSON Formatierer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der JSON Formatierer strukturiert gültiges JSON mit Einrückungen, damit es leichter zu lesen und zu bearbeiten ist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann der JSON Formatierer ungültiges JSON erkennen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Das Tool prüft das JSON beim Formatieren und zeigt bei ungültigem JSON eine Fehlermeldung an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Verarbeitung erfolgt vollständig lokal in Ihrem Browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 2rem;
+    }
+
+    .intro {
+      color: #5b6470;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 260px;
+      resize: vertical;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 15px;
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    #output {
+      min-height: 280px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 18px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      background: #2563eb;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .secondary {
+      background: #64748b;
+    }
+
+    .success {
+      color: #15803d;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .error {
+      color: #dc2626;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .related {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .related a {
+      display: block;
+      background: #f1f5f9;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <h1>JSON Formatierer</h1>
+      <p class="intro">
+        Formatieren und verschönern Sie JSON kostenlos online.
+        Prüfen Sie Ihre JSON-Daten direkt im Browser – ohne Upload.
+      </p>
+    </header>
+
+    <section class="card">
+      <label for="jsonInput">JSON-Eingabe</label>
+
+      <textarea
+        id="jsonInput"
+        placeholder='{"name":"Ali","age":25,"city":"Karachi","skills":["HTML","JavaScript"]}'></textarea>
+
+      <div class="buttons">
+        <button onclick="formatJSON()">JSON formatieren</button>
+        <button class="secondary" onclick="minifyJSON()">JSON minimieren</button>
+        <button class="secondary" onclick="clearAll()">Alles löschen</button>
+      </div>
+
+      <div id="message"></div>
+    </section>
+
+    <section class="card">
+      <h2>Formatiertes JSON</h2>
+
+      <textarea
+        id="output"
+        readonly
+        placeholder="Das formatierte JSON erscheint hier..."
+      ></textarea>
+
+      <div class="buttons">
+        <button onclick="copyJSON()">JSON kopieren</button>
+        <button onclick="downloadJSON()">JSON herunterladen</button>
+      </div>
+
+      <div id="copyMessage"></div>
+    </section>
+
+    <section class="card">
+      <h2>So verwenden Sie den JSON Formatierer</h2>
+
+      <ol>
+        <li>Fügen Sie Ihr JSON in das Eingabefeld ein.</li>
+        <li>Klicken Sie auf „JSON formatieren“.</li>
+        <li>Das Tool prüft und strukturiert Ihr JSON automatisch.</li>
+        <li>Kopieren oder laden Sie das formatierte JSON herunter.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Häufig gestellte Fragen</h2>
+
+      <h3>Was ist ein JSON Formatierer?</h3>
+      <p>
+        Ein JSON Formatierer strukturiert JSON mit übersichtlichen
+        Einrückungen, sodass verschachtelte Daten leichter lesbar sind.
+      </p>
+
+      <h3>Kann das Tool JSON validieren?</h3>
+      <p>
+        Ja. Beim Formatieren wird geprüft, ob das eingegebene JSON gültig ist.
+        Bei einem Fehler wird eine entsprechende Meldung angezeigt.
+      </p>
+
+      <h3>Werden meine Daten gespeichert?</h3>
+      <p>
+        Nein. Die Verarbeitung erfolgt vollständig lokal in Ihrem Browser.
+        Ihre JSON-Daten werden nicht auf einen Server übertragen.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Verwandte Tools</h2>
+
+      <div class="related">
+        <a href="json-zu-csv.html">JSON zu CSV</a>
+        <a href="csv-zu-json.html">CSV zu JSON</a>
+        <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+        <a href="json-zu-markdown.html">JSON zu Markdown</a>
+        <a href="json-zu-sql.html">JSON zu SQL</a>
+        <a href="json-zu-tsv.html">JSON zu TSV</a>
+        <a href="json-zu-xml.html">JSON zu XML</a>
+        <a href="json-zu-yaml.html">JSON zu YAML</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Datenschutz</h2>
+      <p>
+        Ihre Daten bleiben auf Ihrem Gerät. Der JSON Formatierer arbeitet
+        vollständig lokal in Ihrem Browser. Es werden keine JSON-Daten
+        an unseren Server übertragen.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        <a href="https://toolforge1.github.io/entwickler-tools/">
+          Zur Startseite
+        </a>
+      </p>
+      <p>© 2026 Entwickler Tools</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function formatJSON() {
+      const input = document.getElementById("jsonInput").value.trim();
+      const output = document.getElementById("output");
+      const message = document.getElementById("message");
+
+      output.value = "";
+      message.textContent = "";
+      message.className = "";
+
+      if (!input) {
+        message.textContent = "Bitte geben Sie JSON-Daten ein.";
+        message.className = "error";
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(input);
+
+        output.value = JSON.stringify(parsed, null, 2);
+
+        message.textContent = "JSON erfolgreich formatiert.";
+        message.className = "success";
+      } catch (error) {
+        message.textContent =
+          "Ungültiges JSON: " + error.message;
+        message.className = "error";
+      }
+    }
+
+    function minifyJSON() {
+      const input = document.getElementById("jsonInput").value.trim();
+      const output = document.getElementById("output");
+      const message = document.getElementById("message");
+
+      output.value = "";
+      message.textContent = "";
+      message.className = "";
+
+      if (!input) {
+        message.textContent = "Bitte geben Sie JSON-Daten ein.";
+        message.className = "error";
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(input);
+
+        output.value = JSON.stringify(parsed);
+
+        message.textContent = "JSON erfolgreich minimiert.";
+        message.className = "success";
+      } catch (error) {
+        message.textContent =
+          "Ungültiges JSON: " + error.message;
+        message.className = "error";
+      }
+    }
+
+    async function copyJSON() {
+      const output = document.getElementById("output");
+      const copyMessage = document.getElementById("copyMessage");
+
+      copyMessage.textContent = "";
+      copyMessage.className = "";
+
+      if (!output.value) {
+        copyMessage.textContent =
+          "Es gibt noch kein JSON-Ergebnis zum Kopieren.";
+        copyMessage.className = "error";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+        copyMessage.textContent = "JSON erfolgreich kopiert.";
+        copyMessage.className = "success";
+      } catch (error) {
+        output.select();
+        document.execCommand("copy");
+        copyMessage.textContent = "JSON erfolgreich kopiert.";
+        copyMessage.className = "success";
+      }
+    }
+
+    function downloadJSON() {
+      const output = document.getElementById("output").value;
+      const copyMessage = document.getElementById("copyMessage");
+
+      if (!output) {
+        copyMessage.textContent =
+          "Es gibt noch kein JSON-Ergebnis zum Herunterladen.";
+        copyMessage.className = "error";
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "application/json;charset=utf-8" }
+      );
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "formatiertes-json.json";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+    }
+
+    function clearAll() {
+      document.getElementById("jsonInput").value = "";
+      document.getElementById("output").value = "";
+      document.getElementById("message").textContent = "";
+      document.getElementById("copyMessage").textContent = "";
+      document.getElementById("message").className = "";
+      document.getElementById("copyMessage").className = "";
+    }
+  </script>
+
+</body>
+</html>
