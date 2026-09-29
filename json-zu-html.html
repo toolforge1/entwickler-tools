@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON zu HTML Konverter – JSON in HTML umwandeln</title>
+  <meta name="description" content="Kostenloser JSON zu HTML Konverter. Wandeln Sie JSON-Daten direkt im Browser in eine übersichtliche HTML-Tabelle um. Keine Uploads, keine Registrierung.">
+  <meta name="keywords" content="JSON zu HTML, JSON HTML Konverter, JSON in HTML umwandeln, JSON Tabelle, JSON Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-zu-html.html">
+
+  <meta property="og:title" content="JSON zu HTML Konverter">
+  <meta property="og:description" content="JSON kostenlos in HTML umwandeln. Schnell, sicher und direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-zu-html.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich JSON in HTML umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie Ihr JSON ein und klicken Sie auf JSON in HTML umwandeln. Die Daten werden als HTML-Tabelle dargestellt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Verarbeitung erfolgt direkt in Ihrem Browser. Ihre Daten werden nicht an einen Server übertragen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich den erzeugten HTML-Code kopieren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Mit der Kopieren-Schaltfläche können Sie den erzeugten HTML-Code direkt kopieren."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1000px, 94%);
+      margin: 30px auto;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 28px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-size: 22px;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccd2d8;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: monospace;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 260px;
+      resize: vertical;
+    }
+
+    input {
+      font-family: Arial, sans-serif;
+      margin-bottom: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+      background: #1f2937;
+      color: #fff;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #111827;
+      color: #f9fafb;
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      min-height: 180px;
+      font-family: monospace;
+    }
+
+    .preview {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      overflow-x: auto;
+    }
+
+    .preview table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .preview th,
+    .preview td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .preview th {
+      background: #f0f2f4;
+    }
+
+    .card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1558b0;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .container {
+        width: 96%;
+      }
+
+      header,
+      .card {
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>JSON zu HTML Konverter</h1>
+    <p>
+      Wandeln Sie JSON-Daten kostenlos in übersichtlichen HTML-Code um.
+      Die Verarbeitung erfolgt direkt in Ihrem Browser.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>JSON-Eingabe</h2>
+
+    <textarea id="jsonInput" placeholder='Beispiel:
+[
+  {"name":"Ali","age":25,"city":"Karachi"},
+  {"name":"Sara","age":28,"city":"Lahore"}
+]'></textarea>
+
+    <div class="buttons">
+      <button onclick="convertJSON()">JSON in HTML umwandeln</button>
+      <button onclick="copyHTML()">HTML kopieren</button>
+      <button onclick="downloadHTML()">HTML herunterladen</button>
+      <button onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+  </section>
+
+  <section class="card">
+    <h2>HTML-Ergebnis</h2>
+    <pre id="htmlOutput"></pre>
+  </section>
+
+  <section class="card">
+    <h2>Vorschau</h2>
+    <div id="preview" class="preview">
+      Hier wird die HTML-Vorschau angezeigt.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>So verwenden Sie den JSON zu HTML Konverter</h2>
+    <ol>
+      <li>Fügen Sie Ihr JSON in das Eingabefeld ein.</li>
+      <li>Klicken Sie auf „JSON in HTML umwandeln“.</li>
+      <li>Der erzeugte HTML-Code wird angezeigt.</li>
+      <li>Sie können den Code kopieren oder als HTML-Datei herunterladen.</li>
+    </ol>
+
+    <p>
+      Die Konvertierung findet vollständig auf Ihrem Gerät statt.
+      Ihre JSON-Daten werden nicht auf einen Server hochgeladen.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie kann ich JSON in HTML umwandeln?</h3>
+    <p>
+      Fügen Sie Ihr JSON ein und klicken Sie auf „JSON in HTML umwandeln“.
+      Die Daten werden als HTML-Tabelle dargestellt.
+    </p>
+
+    <h3>Werden meine JSON-Daten hochgeladen?</h3>
+    <p>
+      Nein. Die Verarbeitung erfolgt direkt in Ihrem Browser.
+    </p>
+
+    <h3>Kann ich den HTML-Code herunterladen?</h3>
+    <p>
+      Ja. Klicken Sie auf „HTML herunterladen“, um den erzeugten Code als
+      HTML-Datei zu speichern.
+    </p>
+  </section>
+
+  <section class="card related">
+    <h2>Verwandte Tools</h2>
+
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-zu-csv.html">JSON zu CSV</a>
+    <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+    <a href="json-zu-markdown.html">JSON zu Markdown</a>
+    <a href="json-zu-sql.html">JSON zu SQL</a>
+    <a href="json-zu-text.html">JSON zu Text</a>
+    <a href="json-zu-xml.html">JSON zu XML</a>
+    <a href="json-zu-yaml.html">JSON zu YAML</a>
+    <a href="csv-zu-html.html">CSV zu HTML</a>
+  </section>
+
+  <section class="card">
+    <h2>Datenschutz</h2>
+    <p>
+      Dieses Tool verarbeitet Ihre JSON-Daten direkt in Ihrem Browser.
+      Es werden keine Dateien oder Daten auf unseren Server hochgeladen.
+    </p>
+
+    <p>
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        Zur Startseite
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+
+</div>
+
+<script>
+  let generatedHTML = "";
+
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function valueToString(value) {
+    if (value === null) return "";
+    if (typeof value === "object") {
+      return JSON.stringify(value);
+    }
+    return String(value);
+  }
+
+  function convertJSON() {
+    const input = document.getElementById("jsonInput").value.trim();
+    const message = document.getElementById("message");
+    const output = document.getElementById("htmlOutput");
+    const preview = document.getElementById("preview");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input) {
+      output.textContent = "";
+      preview.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    try {
+      const data = JSON.parse(input);
+
+      if (!Array.isArray(data)) {
+        throw new Error("Das JSON muss ein Array von Objekten enthalten.");
+      }
+
+      if (data.length === 0) {
+        throw new Error("Das JSON-Array ist leer.");
+      }
+
+      const keys = [];
+
+      data.forEach(item => {
+        if (item && typeof item === "object" && !Array.isArray(item)) {
+          Object.keys(item).forEach(key => {
+            if (!keys.includes(key)) {
+              keys.push(key);
+            }
+          });
+        }
+      });
+
+      if (keys.length === 0) {
+        throw new Error("Keine gültigen Objekte mit Eigenschaften gefunden.");
+      }
+
+      let html = '<table>\\n';
+      html += '  <thead>\\n';
+      html += '    <tr>\\n';
+
+      keys.forEach(key => {
+        html += `      <th>${escapeHTML(key)}</th>\\n`;
+      });
+
+      html += '    </tr>\\n';
+      html += '  </thead>\\n';
+      html += '  <tbody>\\n';
+
+      data.forEach(item => {
+        html += '    <tr>\\n';
+
+        keys.forEach(key => {
+          const value = item && typeof item === "object"
+            ? valueToString(item[key])
+            : "";
+
+          html += `      <td>${escapeHTML(value)}</td>\\n`;
+        });
+
+        html += '    </tr>\\n';
+      });
+
+      html += '  </tbody>\\n';
+      html += '</table>';
+
+      generatedHTML = html;
+
+      output.textContent = generatedHTML;
+      preview.innerHTML = generatedHTML;
+
+      message.textContent = "JSON wurde erfolgreich in HTML umgewandelt.";
+      message.classList.add("success");
+
+    } catch (error) {
+      generatedHTML = "";
+      output.textContent = "";
+      preview.textContent = "Keine Vorschau verfügbar.";
+
+      message.textContent = "Ungültiges JSON: " + error.message;
+      message.classList.add("error");
+    }
+  }
+
+  async function copyHTML() {
+    if (!generatedHTML) {
+      document.getElementById("message").textContent =
+        "Bitte konvertieren Sie zuerst JSON in HTML.";
+      document.getElementById("message").className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(generatedHTML);
+
+      const message = document.getElementById("message");
+      message.textContent = "HTML wurde in die Zwischenablage kopiert.";
+      message.className = "message success";
+
+    } catch (error) {
+      const message = document.getElementById("message");
+      message.textContent = "Kopieren war nicht möglich.";
+      message.className = "message error";
+    }
+  }
+
+  function downloadHTML() {
+    if (!generatedHTML) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in HTML.";
+      message.className = "message error";
+      return;
+    }
+
+    const fullHTML = `<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON HTML Tabelle</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  text-align: left;
+}
+th {
+  background: #f0f2f4;
+}
+</style>
+</head>
+<body>
+${generatedHTML}
+</body>
+</html>`;
+
+    const blob = new Blob([fullHTML], {
+      type: "text/html;charset=utf-8"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "json-tabelle.html";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    document.getElementById("jsonInput").value = "";
+    document.getElementById("htmlOutput").textContent = "";
+    document.getElementById("preview").textContent =
+      "Hier wird die HTML-Vorschau angezeigt.";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+
+    generatedHTML = "";
+  }
+</script>
+
+</body>
+</html>
