@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON zu TOML Konverter – JSON in TOML umwandeln</title>
+  <meta name="description" content="Kostenloser JSON zu TOML Konverter. Wandeln Sie JSON-Daten direkt im Browser in gültiges TOML um. Schnell, sicher und ohne Upload.">
+  <meta name="keywords" content="JSON zu TOML, JSON TOML Konverter, JSON in TOML umwandeln, TOML Converter, JSON Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-zu-toml.html">
+
+  <meta property="og:title" content="JSON zu TOML Konverter">
+  <meta property="og:description" content="JSON kostenlos in TOML umwandeln. Schnell, sicher und direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-zu-toml.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich JSON in TOML umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie ein JSON-Objekt ein und klicken Sie auf JSON in TOML umwandeln. Das Tool erstellt daraus eine TOML-Darstellung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden verschachtelte JSON-Objekte unterstützt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Verschachtelte Objekte werden als TOML-Tabellen dargestellt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Verarbeitung erfolgt vollständig in Ihrem Browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1000px, 94%);
+      margin: 30px auto;
+    }
+
+    header,
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 270px;
+      padding: 14px;
+      border: 1px solid #ccd2d8;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 15px;
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      background: #1f2937;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    pre {
+      min-height: 200px;
+      padding: 18px;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1558b0;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      header,
+      .card {
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>JSON zu TOML Konverter</h1>
+    <p>
+      Wandeln Sie JSON-Daten kostenlos in TOML um.
+      Die Verarbeitung erfolgt direkt in Ihrem Browser.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>JSON-Eingabe</h2>
+
+    <textarea id="jsonInput" placeholder='Beispiel:
+{
+  "name": "Ali",
+  "age": 25,
+  "active": true,
+  "database": {
+    "host": "localhost",
+    "port": 3306
+  }
+}'></textarea>
+
+    <div class="buttons">
+      <button onclick="convertJSON()">JSON in TOML umwandeln</button>
+      <button onclick="copyTOML()">TOML kopieren</button>
+      <button onclick="downloadTOML()">TOML herunterladen</button>
+      <button onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+  </section>
+
+  <section class="card">
+    <h2>TOML-Ergebnis</h2>
+    <pre id="tomlOutput"></pre>
+  </section>
+
+  <section class="card">
+    <h2>So verwenden Sie den JSON zu TOML Konverter</h2>
+
+    <ol>
+      <li>Fügen Sie ein gültiges JSON-Objekt ein.</li>
+      <li>Klicken Sie auf „JSON in TOML umwandeln“.</li>
+      <li>Das Tool erstellt daraus eine TOML-Darstellung.</li>
+      <li>Kopieren oder laden Sie das TOML-Ergebnis herunter.</li>
+    </ol>
+
+    <p>
+      Verschachtelte JSON-Objekte werden als TOML-Tabellen dargestellt.
+      Arrays werden als TOML-Arrays ausgegeben.
+    </p>
+
+    <p>
+      Die Verarbeitung erfolgt vollständig lokal in Ihrem Browser.
+      Ihre Daten werden nicht auf einen Server hochgeladen.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie kann ich JSON in TOML umwandeln?</h3>
+    <p>
+      Fügen Sie ein JSON-Objekt ein und klicken Sie auf
+      „JSON in TOML umwandeln“.
+    </p>
+
+    <h3>Werden verschachtelte JSON-Objekte unterstützt?</h3>
+    <p>
+      Ja. Verschachtelte Objekte werden als TOML-Tabellen dargestellt.
+    </p>
+
+    <h3>Werden meine JSON-Daten gespeichert?</h3>
+    <p>
+      Nein. Die Konvertierung findet direkt in Ihrem Browser statt.
+    </p>
+  </section>
+
+  <section class="card related">
+    <h2>Verwandte Tools</h2>
+
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-zu-csv.html">JSON zu CSV</a>
+    <a href="json-zu-html.html">JSON zu HTML</a>
+    <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+    <a href="json-zu-markdown.html">JSON zu Markdown</a>
+    <a href="json-zu-sql.html">JSON zu SQL</a>
+    <a href="json-zu-text.html">JSON zu Text</a>
+    <a href="toml-zu-json.html">TOML zu JSON</a>
+  </section>
+
+  <section class="card">
+    <h2>Datenschutz</h2>
+
+    <p>
+      Dieses Tool verarbeitet Ihre JSON-Daten direkt auf Ihrem Gerät.
+      Es ist kein Upload zu einem Server erforderlich.
+    </p>
+
+    <p>
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        Zur Startseite
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+
+</div>
+
+<script>
+  let generatedTOML = "";
+
+  function escapeKey(key) {
+    if (/^[A-Za-z0-9_-]+$/.test(key)) {
+      return key;
+    }
+
+    return '"' + String(key).replace(/"/g, '\\"') + '"';
+  }
+
+  function escapeString(value) {
+    return String(value)
+      .replace(/\\/g, "\\\\")
+      .replace(/"/g, '\\"')
+      .replace(/\r?\n/g, "\\n");
+  }
+
+  function tomlValue(value) {
+    if (value === null) {
+      return '""';
+    }
+
+    if (typeof value === "string") {
+      return '"' + escapeString(value) + '"';
+    }
+
+    if (typeof value === "number") {
+      if (Number.isFinite(value)) {
+        return String(value);
+      }
+      return '""';
+    }
+
+    if (typeof value === "boolean") {
+      return value ? "true" : "false";
+    }
+
+    if (Array.isArray(value)) {
+      return "[" + value.map(tomlValue).join(", ") + "]";
+    }
+
+    if (typeof value === "object") {
+      return '"' +
+        escapeString(JSON.stringify(value)) +
+        '"';
+    }
+
+    return '""';
+  }
+
+  function addTable(object, path, output) {
+    const primitiveEntries = [];
+    const objectEntries = [];
+
+    Object.entries(object).forEach(([key, value]) => {
+      if (
+        value !== null &&
+        typeof value === "object" &&
+        !Array.isArray(value)
+      ) {
+        objectEntries.push([key, value]);
+      } else {
+        primitiveEntries.push([key, value]);
+      }
+    });
+
+    if (path.length > 0 && primitiveEntries.length > 0) {
+      output.push("[" + path.map(escapeKey).join(".") + "]");
+    }
+
+    primitiveEntries.forEach(([key, value]) => {
+      output.push(
+        escapeKey(key) + " = " + tomlValue(value)
+      );
+    });
+
+    if (path.length > 0 && primitiveEntries.length > 0) {
+      output.push("");
+    }
+
+    objectEntries.forEach(([key, value], index) => {
+      const newPath = path.concat(key);
+
+      addTable(value, newPath, output);
+
+      if (
+        index < objectEntries.length - 1 &&
+        output[output.length - 1] !== ""
+      ) {
+        output.push("");
+      }
+    });
+  }
+
+  function convertJSON() {
+    const input = document.getElementById("jsonInput").value.trim();
+    const output = document.getElementById("tomlOutput");
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input) {
+      output.textContent = "";
+      message.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    try {
+      const data = JSON.parse(input);
+
+      if (
+        data === null ||
+        typeof data !== "object" ||
+        Array.isArray(data)
+      ) {
+        throw new Error(
+          "Das JSON muss ein Objekt enthalten."
+        );
+      }
+
+      const lines = [];
+
+      addTable(data, [], lines);
+
+      generatedTOML = lines.join("\n").trim();
+
+      output.textContent = generatedTOML;
+
+      message.textContent =
+        "JSON wurde erfolgreich in TOML umgewandelt.";
+      message.classList.add("success");
+
+    } catch (error) {
+      generatedTOML = "";
+      output.textContent = "";
+
+      message.textContent =
+        "Ungültiges JSON: " + error.message;
+      message.classList.add("error");
+    }
+  }
+
+  async function copyTOML() {
+    if (!generatedTOML) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in TOML.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(generatedTOML);
+
+      const message = document.getElementById("message");
+      message.textContent =
+        "TOML wurde in die Zwischenablage kopiert.";
+      message.className = "message success";
+
+    } catch (error) {
+      const message = document.getElementById("message");
+      message.textContent = "Kopieren war nicht möglich.";
+      message.className = "message error";
+    }
+  }
+
+  function downloadTOML() {
+    if (!generatedTOML) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in TOML.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob(
+      [generatedTOML],
+      { type: "text/plain;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "konvertierte-daten.toml";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    document.getElementById("jsonInput").value = "";
+    document.getElementById("tomlOutput").textContent = "";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+
+    generatedTOML = "";
+  }
+</script>
+
+</body>
+</html>
