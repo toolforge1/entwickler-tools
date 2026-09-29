@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TSV zu JSON Konverter – Kostenlos online</title>
+  <meta name="description" content="TSV kostenlos und direkt im Browser in JSON umwandeln. Schnell, einfach und ohne Upload auf einen Server.">
+  <meta name="keywords" content="TSV zu JSON, TSV JSON Konverter, TSV in JSON umwandeln, TSV Converter, JSON Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/tsv-zu-json.html">
+
+  <meta property="og:title" content="TSV zu JSON Konverter">
+  <meta property="og:description" content="TSV kostenlos und sicher im Browser in JSON umwandeln.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/tsv-zu-json.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich TSV in JSON umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie Ihre TSV-Daten ein und klicken Sie auf „TSV in JSON umwandeln“."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine TSV-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Konvertierung erfolgt direkt in Ihrem Browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich das JSON herunterladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Das erzeugte JSON kann kopiert oder als JSON-Datei heruntergeladen werden."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .intro {
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 15px;
+      background: #222;
+      color: #fff;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #0757a6;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      color: #666;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #0757a6;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <h1>TSV zu JSON Konverter</h1>
+      <p class="intro">
+        Wandeln Sie TSV-Daten schnell und kostenlos in JSON um.
+        Die Verarbeitung erfolgt direkt in Ihrem Browser – ohne Upload auf einen Server.
+      </p>
+    </header>
+
+    <div class="card">
+      <label for="tsvInput">TSV-Eingabe</label>
+
+      <textarea id="tsvInput" placeholder="Beispiel:
+Name	Alter	Stadt
+Ali	30	Karachi
+Sara	25	Lahore"></textarea>
+
+      <div class="buttons">
+        <button onclick="convertTSV()">TSV in JSON umwandeln</button>
+        <button onclick="copyJSON()">JSON kopieren</button>
+        <button onclick="downloadJSON()">JSON herunterladen</button>
+        <button onclick="clearAll()">Alles löschen</button>
+      </div>
+
+      <div id="message" class="message"></div>
+    </div>
+
+    <div class="card">
+      <label for="jsonOutput">JSON-Ergebnis</label>
+      <textarea id="jsonOutput" readonly placeholder="Hier erscheint das konvertierte JSON..."></textarea>
+    </div>
+
+    <div class="card">
+      <h2>So verwenden Sie den TSV zu JSON Konverter</h2>
+      <ol>
+        <li>Fügen Sie Ihre TSV-Daten in das Eingabefeld ein.</li>
+        <li>Klicken Sie auf „TSV in JSON umwandeln“.</li>
+        <li>Prüfen Sie das erzeugte JSON.</li>
+        <li>Kopieren Sie das JSON oder laden Sie es als Datei herunter.</li>
+      </ol>
+
+      <p>
+        Ihre Daten bleiben auf Ihrem Gerät. Die Konvertierung erfolgt vollständig
+        lokal in Ihrem Browser.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Häufig gestellte Fragen</h2>
+
+      <h3>Was ist TSV?</h3>
+      <p>
+        TSV steht für „Tab-Separated Values“. Die einzelnen Spalten werden
+        durch Tabulatoren voneinander getrennt.
+      </p>
+
+      <h3>Was ist JSON?</h3>
+      <p>
+        JSON ist ein weit verbreitetes Datenformat für APIs,
+        Webanwendungen und den Austausch strukturierter Daten.
+      </p>
+
+      <h3>Werden meine Daten gespeichert?</h3>
+      <p>
+        Nein. Die Konvertierung findet direkt in Ihrem Browser statt.
+        Ihre Daten werden nicht auf einen Server hochgeladen.
+      </p>
+    </div>
+
+    <div class="card related">
+      <h2>Verwandte Tools</h2>
+
+      <a href="tsv-zu-csv.html">TSV zu CSV</a>
+      <a href="csv-zu-tsv.html">CSV zu TSV</a>
+      <a href="csv-zu-json.html">CSV zu JSON</a>
+      <a href="json-zu-tsv.html">JSON zu TSV</a>
+      <a href="json-zu-csv.html">JSON zu CSV</a>
+      <a href="json-formatierer.html">JSON Formatierer</a>
+    </div>
+
+    <footer>
+      <p>
+        <a href="https://toolforge1.github.io/entwickler-tools/">
+          Zur Startseite
+        </a>
+      </p>
+      <p>
+        Datenschutz: Ihre Daten werden nicht auf einen Server hochgeladen.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    function convertTSV() {
+      const input = document.getElementById("tsvInput").value;
+      const output = document.getElementById("jsonOutput");
+      const message = document.getElementById("message");
+
+      message.textContent = "";
+      message.className = "message";
+
+      if (!input.trim()) {
+        output.value = "";
+        message.textContent = "Bitte geben Sie TSV-Daten ein.";
+        message.classList.add("error");
+        return;
+      }
+
+      try {
+        const lines = input
+          .replace(/\r\n/g, "\n")
+          .replace(/\r/g, "\n")
+          .split("\n")
+          .filter(line => line.trim() !== "");
+
+        if (lines.length < 1) {
+          throw new Error("Keine gültigen TSV-Daten gefunden.");
+        }
+
+        const headers = lines[0].split("\t").map(header => header.trim());
+
+        if (headers.length === 0 || headers.every(header => header === "")) {
+          throw new Error("Keine gültigen Spaltenüberschriften gefunden.");
+        }
+
+        const data = [];
+
+        for (let i = 1; i < lines.length; i++) {
+          const values = lines[i].split("\t");
+          const row = {};
+
+          headers.forEach((header, index) => {
+            row[header || `Spalte ${index + 1}`] =
+              values[index] !== undefined ? values[index] : "";
+          });
+
+          data.push(row);
+        }
+
+        output.value = JSON.stringify(data, null, 2);
+
+        message.textContent = "TSV wurde erfolgreich in JSON umgewandelt.";
+        message.classList.add("success");
+
+      } catch (error) {
+        output.value = "";
+        message.textContent = "Fehler: " + error.message;
+        message.classList.add("error");
+      }
+    }
+
+    async function copyJSON() {
+      const output = document.getElementById("jsonOutput");
+      const message = document.getElementById("message");
+
+      if (!output.value) {
+        message.textContent = "Es gibt noch kein JSON zum Kopieren.";
+        message.className = "message error";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+
+        message.textContent = "JSON wurde kopiert.";
+        message.className = "message success";
+
+      } catch {
+        output.select();
+        document.execCommand("copy");
+
+        message.textContent = "JSON wurde kopiert.";
+        message.className = "message success";
+      }
+    }
+
+    function downloadJSON() {
+      const output = document.getElementById("jsonOutput").value;
+      const message = document.getElementById("message");
+
+      if (!output) {
+        message.textContent = "Es gibt noch kein JSON zum Herunterladen.";
+        message.className = "message error";
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "application/json;charset=utf-8" }
+      );
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "konvertierte-daten.json";
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      URL.revokeObjectURL(url);
+
+      message.textContent = "JSON-Datei wurde heruntergeladen.";
+      message.className = "message success";
+    }
+
+    function clearAll() {
+      document.getElementById("tsvInput").value = "";
+      document.getElementById("jsonOutput").value = "";
+
+      const message = document.getElementById("message");
+      message.textContent = "";
+      message.className = "message";
+    }
+  </script>
+</body>
+</html>
