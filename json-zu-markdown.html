@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON zu Markdown Konverter – JSON in Markdown umwandeln</title>
+  <meta name="description" content="Kostenloser JSON zu Markdown Konverter. Wandeln Sie JSON-Daten direkt im Browser in übersichtliche Markdown-Tabellen um. Keine Uploads.">
+  <meta name="keywords" content="JSON zu Markdown, JSON Markdown Konverter, JSON in Markdown umwandeln, JSON Tabelle, Markdown Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-zu-markdown.html">
+
+  <meta property="og:title" content="JSON zu Markdown Konverter">
+  <meta property="og:description" content="JSON kostenlos in Markdown umwandeln. Schnell, sicher und direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-zu-markdown.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich JSON in Markdown umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie ein JSON-Array ein und klicken Sie auf JSON in Markdown umwandeln. Die Objekte werden als Markdown-Tabelle dargestellt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche JSON-Daten werden unterstützt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Tool unterstützt JSON-Arrays mit Objekten. Verschachtelte Werte werden als JSON-Text in den Tabellenzellen dargestellt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Verarbeitung erfolgt vollständig in Ihrem Browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1000px, 94%);
+      margin: 30px auto;
+    }
+
+    header,
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 270px;
+      padding: 14px;
+      border: 1px solid #ccd2d8;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 15px;
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      background: #1f2937;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    pre {
+      min-height: 200px;
+      padding: 18px;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+    }
+
+    .preview {
+      overflow-x: auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .preview table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .preview th,
+    .preview td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .preview th {
+      background: #f0f2f4;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1558b0;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      header,
+      .card {
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>JSON zu Markdown Konverter</h1>
+    <p>
+      Wandeln Sie JSON-Daten kostenlos in eine übersichtliche Markdown-Tabelle um.
+      Die Verarbeitung erfolgt direkt in Ihrem Browser.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>JSON-Eingabe</h2>
+
+    <textarea id="jsonInput" placeholder='Beispiel:
+[
+  {"name":"Ali","age":25,"city":"Karachi"},
+  {"name":"Sara","age":28,"city":"Lahore"}
+]'></textarea>
+
+    <div class="buttons">
+      <button onclick="convertJSON()">JSON in Markdown umwandeln</button>
+      <button onclick="copyMarkdown()">Markdown kopieren</button>
+      <button onclick="downloadMarkdown()">Markdown herunterladen</button>
+      <button onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+  </section>
+
+  <section class="card">
+    <h2>Markdown-Ergebnis</h2>
+    <pre id="markdownOutput"></pre>
+  </section>
+
+  <section class="card">
+    <h2>Vorschau</h2>
+    <div id="preview" class="preview">
+      Hier wird die Markdown-Tabelle angezeigt.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>So verwenden Sie den JSON zu Markdown Konverter</h2>
+
+    <ol>
+      <li>Fügen Sie ein gültiges JSON-Array mit Objekten ein.</li>
+      <li>Klicken Sie auf „JSON in Markdown umwandeln“.</li>
+      <li>Die Daten werden als Markdown-Tabelle erstellt.</li>
+      <li>Kopieren oder laden Sie den Markdown-Code herunter.</li>
+    </ol>
+
+    <p>
+      Verschachtelte Objekte und Arrays werden als JSON-Text innerhalb
+      der entsprechenden Tabellenzelle dargestellt.
+    </p>
+
+    <p>
+      Ihre Daten werden nicht hochgeladen. Die Konvertierung erfolgt
+      vollständig lokal in Ihrem Browser.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie kann ich JSON in Markdown umwandeln?</h3>
+    <p>
+      Fügen Sie Ihr JSON ein und klicken Sie auf „JSON in Markdown umwandeln“.
+      Das Ergebnis wird als Markdown-Tabelle erzeugt.
+    </p>
+
+    <h3>Werden verschachtelte JSON-Daten unterstützt?</h3>
+    <p>
+      Ja. Verschachtelte Objekte und Arrays werden als JSON-Text
+      in der entsprechenden Tabellenzelle dargestellt.
+    </p>
+
+    <h3>Werden meine Daten gespeichert?</h3>
+    <p>
+      Nein. Das Tool verarbeitet Ihre Daten direkt in Ihrem Browser.
+    </p>
+  </section>
+
+  <section class="card related">
+    <h2>Verwandte Tools</h2>
+
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-zu-csv.html">JSON zu CSV</a>
+    <a href="json-zu-html.html">JSON zu HTML</a>
+    <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+    <a href="json-zu-sql.html">JSON zu SQL</a>
+    <a href="json-zu-text.html">JSON zu Text</a>
+    <a href="json-zu-tsv.html">JSON zu TSV</a>
+    <a href="csv-zu-markdown.html">CSV zu Markdown</a>
+  </section>
+
+  <section class="card">
+    <h2>Datenschutz</h2>
+
+    <p>
+      Dieses Tool verarbeitet Ihre JSON-Daten direkt auf Ihrem Gerät.
+      Es ist kein Upload zu einem Server erforderlich.
+    </p>
+
+    <p>
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        Zur Startseite
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+
+</div>
+
+<script>
+  let generatedMarkdown = "";
+
+  function escapeMarkdown(value) {
+    return String(value)
+      .replace(/\|/g, "\\|")
+      .replace(/\r?\n/g, "<br>");
+  }
+
+  function valueToString(value) {
+    if (value === null || value === undefined) {
+      return "";
+    }
+
+    if (typeof value === "object") {
+      return JSON.stringify(value);
+    }
+
+    return String(value);
+  }
+
+  function convertJSON() {
+    const input = document.getElementById("jsonInput").value.trim();
+    const output = document.getElementById("markdownOutput");
+    const preview = document.getElementById("preview");
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input) {
+      output.textContent = "";
+      preview.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    try {
+      const data = JSON.parse(input);
+
+      if (!Array.isArray(data)) {
+        throw new Error("Das JSON muss ein Array enthalten.");
+      }
+
+      if (data.length === 0) {
+        throw new Error("Das JSON-Array ist leer.");
+      }
+
+      const validObjects = data.filter(
+        item => item !== null &&
+                typeof item === "object" &&
+                !Array.isArray(item)
+      );
+
+      if (validObjects.length !== data.length) {
+        throw new Error(
+          "Jedes Element des JSON-Arrays muss ein Objekt sein."
+        );
+      }
+
+      const keys = [];
+
+      data.forEach(item => {
+        Object.keys(item).forEach(key => {
+          if (!keys.includes(key)) {
+            keys.push(key);
+          }
+        });
+      });
+
+      if (keys.length === 0) {
+        throw new Error(
+          "Keine Eigenschaften in den JSON-Objekten gefunden."
+        );
+      }
+
+      let markdown = "";
+
+      markdown += "| " + keys.map(escapeMarkdown).join(" | ") + " |\\n";
+      markdown += "| " + keys.map(() => "---").join(" | ") + " |\\n";
+
+      data.forEach(item => {
+        const row = keys.map(key =>
+          escapeMarkdown(valueToString(item[key]))
+        );
+
+        markdown += "| " + row.join(" | ") + " |\\n";
+      });
+
+      generatedMarkdown = markdown.trim();
+
+      output.textContent = generatedMarkdown;
+
+      let tableHTML = "<table><thead><tr>";
+
+      keys.forEach(key => {
+        tableHTML += "<th>" + escapeHTML(key) + "</th>";
+      });
+
+      tableHTML += "</tr></thead><tbody>";
+
+      data.forEach(item => {
+        tableHTML += "<tr>";
+
+        keys.forEach(key => {
+          tableHTML +=
+            "<td>" +
+            escapeHTML(valueToString(item[key])) +
+            "</td>";
+        });
+
+        tableHTML += "</tr>";
+      });
+
+      tableHTML += "</tbody></table>";
+
+      preview.innerHTML = tableHTML;
+
+      message.textContent =
+        "JSON wurde erfolgreich in Markdown umgewandelt.";
+      message.classList.add("success");
+
+    } catch (error) {
+      generatedMarkdown = "";
+      output.textContent = "";
+      preview.textContent = "Keine Vorschau verfügbar.";
+
+      message.textContent =
+        "Ungültiges JSON: " + error.message;
+      message.classList.add("error");
+    }
+  }
+
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  async function copyMarkdown() {
+    if (!generatedMarkdown) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in Markdown.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(generatedMarkdown);
+
+      const message = document.getElementById("message");
+      message.textContent =
+        "Markdown wurde in die Zwischenablage kopiert.";
+      message.className = "message success";
+
+    } catch (error) {
+      const message = document.getElementById("message");
+      message.textContent = "Kopieren war nicht möglich.";
+      message.className = "message error";
+    }
+  }
+
+  function downloadMarkdown() {
+    if (!generatedMarkdown) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in Markdown.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob(
+      [generatedMarkdown],
+      { type: "text/markdown;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "konvertierte-tabelle.md";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    document.getElementById("jsonInput").value = "";
+    document.getElementById("markdownOutput").textContent = "";
+    document.getElementById("preview").textContent =
+      "Hier wird die Markdown-Tabelle angezeigt.";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+
+    generatedMarkdown = "";
+  }
+</script>
+
+</body>
+</html>
