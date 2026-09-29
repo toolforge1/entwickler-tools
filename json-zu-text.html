@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON zu Text Konverter – JSON in Text umwandeln</title>
+  <meta name="description" content="Kostenloser JSON zu Text Konverter. Wandeln Sie JSON-Daten direkt im Browser in lesbaren Text um. Schnell, sicher und ohne Upload.">
+  <meta name="keywords" content="JSON zu Text, JSON Text Konverter, JSON in Text umwandeln, JSON Converter, JSON Text">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-zu-text.html">
+
+  <meta property="og:title" content="JSON zu Text Konverter">
+  <meta property="og:description" content="JSON kostenlos in lesbaren Text umwandeln. Schnell, sicher und direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-zu-text.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich JSON in Text umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie Ihr JSON ein und klicken Sie auf JSON in Text umwandeln. Das Tool erstellt daraus eine übersichtliche Textdarstellung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden verschachtelte JSON-Daten unterstützt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Objekte und Arrays werden übersichtlich eingerückt dargestellt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Verarbeitung erfolgt vollständig in Ihrem Browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1000px, 94%);
+      margin: 30px auto;
+    }
+
+    header,
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 270px;
+      padding: 14px;
+      border: 1px solid #ccd2d8;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 15px;
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      background: #1f2937;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    pre {
+      min-height: 200px;
+      padding: 18px;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1558b0;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      header,
+      .card {
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>JSON zu Text Konverter</h1>
+    <p>
+      Wandeln Sie JSON-Daten kostenlos in eine übersichtliche
+      und lesbare Textdarstellung um.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>JSON-Eingabe</h2>
+
+    <textarea id="jsonInput" placeholder='Beispiel:
+{
+  "name": "Ali",
+  "age": 25,
+  "city": "Karachi",
+  "skills": ["JavaScript", "Python"]
+}'></textarea>
+
+    <div class="buttons">
+      <button onclick="convertJSON()">JSON in Text umwandeln</button>
+      <button onclick="copyText()">Text kopieren</button>
+      <button onclick="downloadText()">Text herunterladen</button>
+      <button onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+  </section>
+
+  <section class="card">
+    <h2>Text-Ergebnis</h2>
+    <pre id="textOutput"></pre>
+  </section>
+
+  <section class="card">
+    <h2>So verwenden Sie den JSON zu Text Konverter</h2>
+
+    <ol>
+      <li>Fügen Sie gültiges JSON in das Eingabefeld ein.</li>
+      <li>Klicken Sie auf „JSON in Text umwandeln“.</li>
+      <li>Das JSON wird in eine übersichtliche Textdarstellung umgewandelt.</li>
+      <li>Kopieren oder laden Sie das Ergebnis herunter.</li>
+    </ol>
+
+    <p>
+      Verschachtelte Objekte und Arrays werden automatisch eingerückt,
+      damit die Daten leichter lesbar sind.
+    </p>
+
+    <p>
+      Die Verarbeitung erfolgt vollständig in Ihrem Browser.
+      Ihre Daten werden nicht auf einen Server hochgeladen.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie kann ich JSON in Text umwandeln?</h3>
+    <p>
+      Fügen Sie Ihr JSON ein und klicken Sie auf
+      „JSON in Text umwandeln“. Das Ergebnis wird als
+      übersichtlicher Text angezeigt.
+    </p>
+
+    <h3>Werden verschachtelte JSON-Daten unterstützt?</h3>
+    <p>
+      Ja. Verschachtelte Objekte und Arrays werden automatisch
+      eingerückt dargestellt.
+    </p>
+
+    <h3>Werden meine JSON-Daten gespeichert?</h3>
+    <p>
+      Nein. Die Konvertierung findet direkt in Ihrem Browser statt.
+    </p>
+  </section>
+
+  <section class="card related">
+    <h2>Verwandte Tools</h2>
+
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-zu-csv.html">JSON zu CSV</a>
+    <a href="json-zu-html.html">JSON zu HTML</a>
+    <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+    <a href="json-zu-markdown.html">JSON zu Markdown</a>
+    <a href="json-zu-sql.html">JSON zu SQL</a>
+    <a href="json-zu-tsv.html">JSON zu TSV</a>
+    <a href="text-zu-json.html">Text zu JSON</a>
+  </section>
+
+  <section class="card">
+    <h2>Datenschutz</h2>
+
+    <p>
+      Dieses Tool verarbeitet Ihre JSON-Daten direkt auf Ihrem Gerät.
+      Es ist kein Upload zu einem Server erforderlich.
+    </p>
+
+    <p>
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        Zur Startseite
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+
+</div>
+
+<script>
+  let generatedText = "";
+
+  function jsonToText(value, indent = 0) {
+    const spaces = " ".repeat(indent);
+
+    if (value === null) {
+      return "null";
+    }
+
+    if (typeof value !== "object") {
+      return String(value);
+    }
+
+    if (Array.isArray(value)) {
+      if (value.length === 0) {
+        return "[]";
+      }
+
+      return value.map((item, index) => {
+        return (
+          spaces +
+          "- " +
+          jsonToText(item, indent + 2)
+        );
+      }).join("\n");
+    }
+
+    const entries = Object.entries(value);
+
+    if (entries.length === 0) {
+      return "{}";
+    }
+
+    return entries.map(([key, val]) => {
+      if (
+        val !== null &&
+        typeof val === "object"
+      ) {
+        return (
+          spaces +
+          key +
+          ":\n" +
+          jsonToText(val, indent + 2)
+        );
+      }
+
+      return (
+        spaces +
+        key +
+        ": " +
+        jsonToText(val, indent + 2)
+      );
+    }).join("\n");
+  }
+
+  function convertJSON() {
+    const input = document.getElementById("jsonInput").value.trim();
+    const output = document.getElementById("textOutput");
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input) {
+      output.textContent = "";
+      message.textContent = "Bitte geben Sie JSON-Daten ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    try {
+      const data = JSON.parse(input);
+
+      generatedText = jsonToText(data);
+
+      output.textContent = generatedText;
+
+      message.textContent =
+        "JSON wurde erfolgreich in Text umgewandelt.";
+      message.classList.add("success");
+
+    } catch (error) {
+      generatedText = "";
+      output.textContent = "";
+
+      message.textContent =
+        "Ungültiges JSON: " + error.message;
+      message.classList.add("error");
+    }
+  }
+
+  async function copyText() {
+    if (!generatedText) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in Text.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(generatedText);
+
+      const message = document.getElementById("message");
+      message.textContent =
+        "Text wurde in die Zwischenablage kopiert.";
+      message.className = "message success";
+
+    } catch (error) {
+      const message = document.getElementById("message");
+      message.textContent = "Kopieren war nicht möglich.";
+      message.className = "message error";
+    }
+  }
+
+  function downloadText() {
+    if (!generatedText) {
+      const message = document.getElementById("message");
+      message.textContent =
+        "Bitte konvertieren Sie zuerst JSON in Text.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob(
+      [generatedText],
+      { type: "text/plain;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "konvertierte-daten.txt";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    document.getElementById("jsonInput").value = "";
+    document.getElementById("textOutput").textContent = "";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+
+    generatedText = "";
+  }
+</script>
+
+</body>
+</html>
