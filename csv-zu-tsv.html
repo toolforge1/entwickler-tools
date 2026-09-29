@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CSV zu TSV Konverter – Kostenlos online</title>
+  <meta name="description" content="CSV kostenlos in TSV umwandeln. Schneller und sicherer CSV zu TSV Konverter direkt im Browser ohne Datei-Upload.">
+  <meta name="keywords" content="CSV zu TSV, CSV TSV Konverter, CSV in TSV umwandeln, CSV to TSV, TSV Konverter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/csv-zu-tsv.html">
+
+  <meta property="og:title" content="CSV zu TSV Konverter">
+  <meta property="og:description" content="CSV kostenlos in TSV umwandeln – direkt im Browser und ohne Upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/csv-zu-tsv.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie funktioniert der CSV zu TSV Konverter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie Ihre CSV-Daten ein und klicken Sie auf In TSV umwandeln. Die Daten werden direkt im Browser konvertiert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine CSV-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Konvertierung erfolgt vollständig lokal in Ihrem Browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen CSV und TSV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSV verwendet normalerweise Kommas als Trennzeichen, während TSV Tabulatoren zur Trennung der Spalten verwendet."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 2rem;
+    }
+
+    .intro {
+      color: #5b6470;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 240px;
+      resize: vertical;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 15px;
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    #output {
+      min-height: 260px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 18px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      background: #2563eb;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .secondary {
+      background: #64748b;
+    }
+
+    .success {
+      color: #15803d;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .error {
+      color: #dc2626;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .related {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .related a {
+      display: block;
+      background: #f1f5f9;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <h1>CSV zu TSV Konverter</h1>
+      <p class="intro">
+        Wandeln Sie CSV-Daten kostenlos in TSV um.
+        Die Konvertierung erfolgt schnell und sicher direkt in Ihrem Browser.
+      </p>
+    </header>
+
+    <section class="card">
+      <label for="csvInput">CSV-Eingabe</label>
+
+      <textarea
+        id="csvInput"
+        placeholder="name,age,city
+Ali,25,Karachi
+Sara,30,Lahore"></textarea>
+
+      <div class="buttons">
+        <button onclick="convertToTSV()">In TSV umwandeln</button>
+        <button class="secondary" onclick="clearAll()">Alles löschen</button>
+      </div>
+
+      <div id="message"></div>
+    </section>
+
+    <section class="card">
+      <h2>TSV-Ergebnis</h2>
+
+      <textarea
+        id="output"
+        readonly
+        placeholder="Ihr TSV-Ergebnis erscheint hier..."
+      ></textarea>
+
+      <div class="buttons">
+        <button onclick="copyTSV()">TSV kopieren</button>
+        <button onclick="downloadTSV()">TSV herunterladen</button>
+      </div>
+
+      <div id="copyMessage"></div>
+    </section>
+
+    <section class="card">
+      <h2>So verwenden Sie den CSV zu TSV Konverter</h2>
+
+      <ol>
+        <li>Fügen Sie Ihre CSV-Daten in das Eingabefeld ein.</li>
+        <li>Klicken Sie auf „In TSV umwandeln“.</li>
+        <li>Prüfen Sie das erzeugte TSV-Ergebnis.</li>
+        <li>Kopieren Sie das Ergebnis oder laden Sie die TSV-Datei herunter.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Häufig gestellte Fragen</h2>
+
+      <h3>Ist der CSV zu TSV Konverter kostenlos?</h3>
+      <p>
+        Ja. Sie können das Tool kostenlos direkt im Browser verwenden.
+      </p>
+
+      <h3>Werden meine Daten auf einen Server übertragen?</h3>
+      <p>
+        Nein. Die Konvertierung erfolgt lokal auf Ihrem Gerät.
+        Ihre CSV-Daten werden nicht auf einen Server hochgeladen.
+      </p>
+
+      <h3>Was ist TSV?</h3>
+      <p>
+        TSV steht für „Tab-Separated Values“. Im Gegensatz zu CSV werden
+        die Spalten durch Tabulatoren getrennt.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Verwandte Tools</h2>
+
+      <div class="related">
+        <a href="csv-zu-json.html">CSV zu JSON</a>
+        <a href="csv-zu-html.html">CSV zu HTML</a>
+        <a href="csv-zu-jsonl.html">CSV zu JSONL</a>
+        <a href="csv-zu-markdown.html">CSV zu Markdown</a>
+        <a href="csv-zu-sql.html">CSV zu SQL</a>
+        <a href="tsv-zu-csv.html">TSV zu CSV</a>
+        <a href="tsv-zu-json.html">TSV zu JSON</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Datenschutz</h2>
+      <p>
+        Ihre Daten bleiben auf Ihrem Gerät. Die Konvertierung erfolgt
+        vollständig lokal in Ihrem Browser. Es werden keine CSV-Daten
+        an unseren Server übertragen.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        <a href="https://toolforge1.github.io/entwickler-tools/">
+          Zur Startseite
+        </a>
+      </p>
+      <p>© 2026 Entwickler Tools</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function parseCSVLine(line) {
+      const result = [];
+      let current = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+
+        if (char === '"') {
+          if (inQuotes && line[i + 1] === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === "," && !inQuotes) {
+          result.push(current.trim());
+          current = "";
+        } else {
+          current += char;
+        }
+      }
+
+      result.push(current.trim());
+      return result;
+    }
+
+    function escapeTSV(value) {
+      return value
+        .replace(/\t/g, " ")
+        .replace(/\r?\n/g, " ");
+    }
+
+    function convertToTSV() {
+      const csv = document.getElementById("csvInput").value.trim();
+      const output = document.getElementById("output");
+      const message = document.getElementById("message");
+
+      output.value = "";
+      message.textContent = "";
+      message.className = "";
+
+      if (!csv) {
+        message.textContent = "Bitte geben Sie CSV-Daten ein.";
+        message.className = "error";
+        return;
+      }
+
+      const lines = csv
+        .split(/\r?\n/)
+        .filter(line => line.trim() !== "");
+
+      if (lines.length === 0) {
+        message.textContent = "Keine gültigen CSV-Daten gefunden.";
+        message.className = "error";
+        return;
+      }
+
+      const rows = lines.map(parseCSVLine);
+      const maxColumns = Math.max(...rows.map(row => row.length));
+
+      const normalizedRows = rows.map(row => {
+        const normalized = [...row];
+
+        while (normalized.length < maxColumns) {
+          normalized.push("");
+        }
+
+        return normalized.map(escapeTSV);
+      });
+
+      output.value = normalizedRows
+        .map(row => row.join("\t"))
+        .join("\n");
+
+      message.textContent =
+        `${normalizedRows.length} Zeile(n) erfolgreich in TSV umgewandelt.`;
+      message.className = "success";
+    }
+
+    async function copyTSV() {
+      const output = document.getElementById("output");
+      const copyMessage = document.getElementById("copyMessage");
+
+      copyMessage.textContent = "";
+      copyMessage.className = "";
+
+      if (!output.value) {
+        copyMessage.textContent =
+          "Es gibt noch kein TSV-Ergebnis zum Kopieren.";
+        copyMessage.className = "error";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+        copyMessage.textContent = "TSV erfolgreich kopiert.";
+        copyMessage.className = "success";
+      } catch (error) {
+        output.select();
+        document.execCommand("copy");
+        copyMessage.textContent = "TSV erfolgreich kopiert.";
+        copyMessage.className = "success";
+      }
+    }
+
+    function downloadTSV() {
+      const output = document.getElementById("output").value;
+      const copyMessage = document.getElementById("copyMessage");
+
+      if (!output) {
+        copyMessage.textContent =
+          "Es gibt noch kein TSV-Ergebnis zum Herunterladen.";
+        copyMessage.className = "error";
+        return;
+      }
+
+      const blob = new Blob([output], {
+        type: "text/tab-separated-values;charset=utf-8"
+      });
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "konvertierte-daten.tsv";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+    }
+
+    function clearAll() {
+      document.getElementById("csvInput").value = "";
+      document.getElementById("output").value = "";
+      document.getElementById("message").textContent = "";
+      document.getElementById("copyMessage").textContent = "";
+      document.getElementById("message").className = "";
+      document.getElementById("copyMessage").className = "";
+    }
+  </script>
+
+</body>
+</html>
