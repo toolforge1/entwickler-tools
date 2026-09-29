@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON zu XML Konverter – JSON in XML umwandeln</title>
+  <meta name="description" content="Kostenloser JSON zu XML Konverter. Wandeln Sie JSON direkt im Browser in XML um. Schnell, einfach und ohne Upload Ihrer Daten.">
+  <meta name="keywords" content="JSON zu XML, JSON XML Konverter, JSON in XML umwandeln, JSON XML Converter, JSON to XML">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/json-zu-xml.html">
+
+  <meta property="og:title" content="JSON zu XML Konverter">
+  <meta property="og:description" content="JSON kostenlos und direkt im Browser in XML umwandeln.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/json-zu-xml.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was macht der JSON zu XML Konverter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Tool wandelt gültiges JSON direkt im Browser in eine strukturierte XML-Ausgabe um."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine JSON-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Verarbeitung erfolgt vollständig lokal im Browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich das XML-Ergebnis herunterladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Das erzeugte XML kann kopiert oder als XML-Datei heruntergeladen werden."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 32px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-size: 23px;
+    }
+
+    h3 {
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 240px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: none;
+      padding: 11px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .primary {
+      background: #222;
+      color: white;
+    }
+
+    .secondary {
+      background: #e9edf2;
+      color: #222;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .message {
+      margin: 12px 0;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    .privacy {
+      background: #f0f7f2;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #1769aa;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>JSON zu XML Konverter</h1>
+
+    <p>
+      Wandeln Sie JSON schnell und kostenlos in XML um.
+      Die Verarbeitung erfolgt direkt in Ihrem Browser.
+    </p>
+
+    <label for="input"><strong>JSON-Eingabe</strong></label>
+    <textarea id="input" placeholder='{"person":{"name":"Ali","age":30},"city":"Karachi"}'></textarea>
+
+    <div class="buttons">
+      <button class="primary" onclick="convertJSON()">JSON in XML umwandeln</button>
+      <button class="secondary" onclick="copyResult()">XML kopieren</button>
+      <button class="secondary" onclick="downloadResult()">XML herunterladen</button>
+      <button class="secondary" onclick="clearAll()">Alles löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <label for="output"><strong>XML-Ergebnis</strong></label>
+    <textarea id="output" readonly placeholder="Das XML-Ergebnis erscheint hier..."></textarea>
+
+    <h2>So verwenden Sie den JSON zu XML Konverter</h2>
+
+    <ol>
+      <li>Geben Sie gültiges JSON in das Eingabefeld ein.</li>
+      <li>Klicken Sie auf „JSON in XML umwandeln“.</li>
+      <li>Das Tool erstellt daraus eine strukturierte XML-Datei.</li>
+      <li>Kopieren Sie das Ergebnis oder laden Sie es als XML-Datei herunter.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+
+    <h3>Was macht der JSON zu XML Konverter?</h3>
+    <p>
+      Er wandelt gültiges JSON in eine strukturierte XML-Darstellung um.
+      Objekte, Arrays, Strings, Zahlen, Booleans und Nullwerte werden verarbeitet.
+    </p>
+
+    <h3>Werden meine Daten hochgeladen?</h3>
+    <p>
+      Nein. Die Konvertierung erfolgt vollständig lokal in Ihrem Browser.
+      Ihre JSON-Daten werden nicht an einen Server gesendet.
+    </p>
+
+    <h3>Kann ich das XML herunterladen?</h3>
+    <p>
+      Ja. Das erzeugte XML kann direkt kopiert oder als
+      <code>.xml</code>-Datei heruntergeladen werden.
+    </p>
+
+    <div class="privacy">
+      <strong>Datenschutz:</strong>
+      Ihre Daten bleiben auf Ihrem Gerät. Dieses Tool verarbeitet Ihre Eingaben
+      direkt im Browser und lädt keine Daten auf einen Server hoch.
+    </div>
+
+    <h2>Weitere Entwickler-Tools</h2>
+
+    <div class="related">
+      <a href="json-formatierer.html">JSON Formatierer</a>
+      <a href="json-zu-csv.html">JSON zu CSV</a>
+      <a href="json-zu-html.html">JSON zu HTML</a>
+      <a href="json-zu-jsonl.html">JSON zu JSONL</a>
+      <a href="json-zu-markdown.html">JSON zu Markdown</a>
+      <a href="json-zu-sql.html">JSON zu SQL</a>
+      <a href="json-zu-text.html">JSON zu Text</a>
+      <a href="json-zu-toml.html">JSON zu TOML</a>
+      <a href="json-zu-tsv.html">JSON zu TSV</a>
+      <a href="json-zu-yaml.html">JSON zu YAML</a>
+      <a href="xml-zu-json.html">XML zu JSON</a>
+      <a href="json-url-encoder.html">JSON URL Encoder</a>
+      <a href="json-url-decoder.html">JSON URL Decoder</a>
+      <a href="json-diff-vergleich.html">JSON Diff Vergleich</a>
+    </div>
+
+    <p style="margin-top:25px;">
+      <a href="https://toolforge1.github.io/entwickler-tools/">
+        ← Zur Startseite
+      </a>
+    </p>
+
+  </div>
+
+  <footer>
+    © 2026 Entwickler Tools – Kostenlose browserbasierte Entwickler-Tools
+  </footer>
+</div>
+
+<script>
+  function escapeXML(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&apos;");
+  }
+
+  function sanitizeTagName(name) {
+    let tag = String(name)
+      .trim()
+      .replace(/[^a-zA-Z0-9_.-]/g, "_");
+
+    if (!tag) {
+      tag = "item";
+    }
+
+    if (!/^[a-zA-Z_]/.test(tag)) {
+      tag = "item_" + tag;
+    }
+
+    return tag;
+  }
+
+  function valueToXML(value, tagName, level) {
+    const indent = "  ".repeat(level);
+    const childIndent = "  ".repeat(level + 1);
+    const tag = sanitizeTagName(tagName);
+
+    if (value === null) {
+      return `${indent}<${tag} />`;
+    }
+
+    if (Array.isArray(value)) {
+      if (value.length === 0) {
+        return `${indent}<${tag} />`;
+      }
+
+      const children = value.map(item =>
+        valueToXML(item, "item", level + 1)
+      ).join("\n");
+
+      return `${indent}<${tag}>\n${children}\n${indent}</${tag}>`;
+    }
+
+    if (typeof value === "object") {
+      const entries = Object.entries(value);
+
+      if (entries.length === 0) {
+        return `${indent}<${tag} />`;
+      }
+
+      const children = entries.map(([key, val]) =>
+        valueToXML(val, key, level + 1)
+      ).join("\n");
+
+      return `${indent}<${tag}>\n${children}\n${indent}</${tag}>`;
+    }
+
+    return `${indent}<${tag}>${escapeXML(value)}</${tag}>`;
+  }
+
+  function convertJSON() {
+    const input = document.getElementById("input").value.trim();
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    message.textContent = "";
+    message.className = "message";
+
+    if (!input) {
+      output.value = "";
+      message.textContent = "Bitte geben Sie JSON ein.";
+      message.classList.add("error");
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(input);
+
+      const xmlBody = valueToXML(parsed, "root", 0);
+
+      output.value =
+`<?xml version="1.0" encoding="UTF-8"?>
+${xmlBody}`;
+
+      message.textContent = "JSON wurde erfolgreich in XML umgewandelt.";
+      message.classList.add("success");
+
+    } catch (error) {
+      output.value = "";
+      message.textContent = "Ungültiges JSON. Bitte überprüfen Sie Ihre Eingabe.";
+      message.classList.add("error");
+    }
+  }
+
+  async function copyResult() {
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    if (!output.value) {
+      message.textContent = "Kein XML-Ergebnis zum Kopieren vorhanden.";
+      message.className = "message error";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(output.value);
+      message.textContent = "XML wurde kopiert.";
+      message.className = "message success";
+    } catch (error) {
+      output.select();
+      document.execCommand("copy");
+      message.textContent = "XML wurde kopiert.";
+      message.className = "message success";
+    }
+  }
+
+  function downloadResult() {
+    const output = document.getElementById("output");
+    const message = document.getElementById("message");
+
+    if (!output.value) {
+      message.textContent = "Kein XML-Ergebnis zum Herunterladen vorhanden.";
+      message.className = "message error";
+      return;
+    }
+
+    const blob = new Blob([output.value], {
+      type: "application/xml;charset=utf-8"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = "konvertiertes-daten.xml";
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+    message.textContent = "XML-Datei wurde heruntergeladen.";
+    message.className = "message success";
+  }
+
+  function clearAll() {
+    document.getElementById("input").value = "";
+    document.getElementById("output").value = "";
+
+    const message = document.getElementById("message");
+    message.textContent = "";
+    message.className = "message";
+  }
+</script>
+
+</body>
+</html>
