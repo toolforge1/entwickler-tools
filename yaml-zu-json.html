@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YAML zu JSON Konverter – Kostenlos online</title>
+  <meta name="description" content="YAML kostenlos und direkt im Browser in JSON umwandeln. Schnell, einfach und ohne Upload auf einen Server.">
+  <meta name="keywords" content="YAML zu JSON, YAML JSON Konverter, YAML in JSON umwandeln, YAML Converter, JSON Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/yaml-zu-json.html">
+
+  <meta property="og:title" content="YAML zu JSON Konverter">
+  <meta property="og:description" content="YAML kostenlos und sicher im Browser in JSON umwandeln.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/yaml-zu-json.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich YAML in JSON umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie Ihren YAML-Code ein und klicken Sie auf „YAML in JSON umwandeln“."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine YAML-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Konvertierung erfolgt direkt in Ihrem Browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich das JSON herunterladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Das erzeugte JSON kann kopiert oder als JSON-Datei heruntergeladen werden."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .intro {
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      border: 0;
+      padding: 11px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 15px;
+      background: #222;
+      color: #fff;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #16803c;
+    }
+
+    .error {
+      color: #c62828;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #0757a6;
+      text-decoration: none;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      color: #666;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #0757a6;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <h1>YAML zu JSON Konverter</h1>
+      <p class="intro">
+        Wandeln Sie YAML schnell und kostenlos in JSON um.
+        Die Verarbeitung erfolgt direkt in Ihrem Browser – ohne Upload auf einen Server.
+      </p>
+    </header>
+
+    <div class="card">
+      <label for="yamlInput">YAML-Eingabe</label>
+
+      <textarea id="yamlInput" placeholder="Beispiel:
+name: Ali
+age: 30
+active: true
+city: Karachi
+skills:
+  - JavaScript
+  - JSON
+  - YAML"></textarea>
+
+      <div class="buttons">
+        <button onclick="convertYAML()">YAML in JSON umwandeln</button>
+        <button onclick="copyJSON()">JSON kopieren</button>
+        <button onclick="downloadJSON()">JSON herunterladen</button>
+        <button onclick="clearAll()">Alles löschen</button>
+      </div>
+
+      <div id="message" class="message"></div>
+    </div>
+
+    <div class="card">
+      <label for="jsonOutput">JSON-Ergebnis</label>
+      <textarea id="jsonOutput" readonly placeholder="Hier erscheint das konvertierte JSON..."></textarea>
+    </div>
+
+    <div class="card">
+      <h2>So verwenden Sie den YAML zu JSON Konverter</h2>
+      <ol>
+        <li>Fügen Sie Ihren YAML-Code in das Eingabefeld ein.</li>
+        <li>Klicken Sie auf „YAML in JSON umwandeln“.</li>
+        <li>Prüfen Sie das erzeugte JSON.</li>
+        <li>Kopieren Sie das Ergebnis oder laden Sie es als JSON-Datei herunter.</li>
+      </ol>
+
+      <p>
+        Ihre Daten bleiben auf Ihrem Gerät. Die Konvertierung erfolgt vollständig
+        lokal in Ihrem Browser.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Häufig gestellte Fragen</h2>
+
+      <h3>Was ist YAML?</h3>
+      <p>
+        YAML ist ein gut lesbares Datenformat, das häufig für Konfigurationsdateien
+        und strukturierte Daten verwendet wird.
+      </p>
+
+      <h3>Warum YAML in JSON umwandeln?</h3>
+      <p>
+        JSON wird von vielen Programmiersprachen, APIs und Webanwendungen unterstützt
+        und eignet sich daher für den Datenaustausch.
+      </p>
+
+      <h3>Werden meine YAML-Daten gespeichert?</h3>
+      <p>
+        Nein. Die Konvertierung findet direkt in Ihrem Browser statt.
+        Ihre Daten werden nicht auf einen Server hochgeladen.
+      </p>
+    </div>
+
+    <div class="card related">
+      <h2>Verwandte Tools</h2>
+
+      <a href="json-zu-yaml.html">JSON zu YAML</a>
+      <a href="json-formatierer.html">JSON Formatierer</a>
+      <a href="xml-zu-json.html">XML zu JSON</a>
+      <a href="toml-zu-json.html">TOML zu JSON</a>
+      <a href="csv-zu-json.html">CSV zu JSON</a>
+      <a href="json-zu-csv.html">JSON zu CSV</a>
+    </div>
+
+    <footer>
+      <p>
+        <a href="https://toolforge1.github.io/entwickler-tools/">
+          Zur Startseite
+        </a>
+      </p>
+      <p>
+        Datenschutz: Ihre Daten werden nicht auf einen Server hochgeladen.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    function removeComment(line) {
+      let inSingle = false;
+      let inDouble = false;
+      let escaped = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+
+        if (char === '"' && !inSingle && !escaped) {
+          inDouble = !inDouble;
+        }
+
+        if (char === "'" && !inDouble) {
+          inSingle = !inSingle;
+        }
+
+        if (char === "#" && !inSingle && !inDouble) {
+          return line.slice(0, i).trimEnd();
+        }
+
+        if (char === "\\" && inDouble && !escaped) {
+          escaped = true;
+        } else {
+          escaped = false;
+        }
+      }
+
+      return line.trimEnd();
+    }
+
+    function getIndent(line) {
+      return line.match(/^\s*/)[0].length;
+    }
+
+    function parseScalar(value) {
+      value = value.trim();
+
+      if (value === "") {
+        return {};
+      }
+
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        return parseQuotedString(value);
+      }
+
+      if (value === "true") return true;
+      if (value === "false") return false;
+      if (value === "null" || value === "~") return null;
+
+      if (/^[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?$/.test(value)) {
+        const number = Number(value);
+        if (!Number.isNaN(number)) return number;
+      }
+
+      if (value.startsWith("[") && value.endsWith("]")) {
+        return parseFlowArray(value);
+      }
+
+      if (value.startsWith("{") && value.endsWith("}")) {
+        return parseFlowObject(value);
+      }
+
+      return value;
+    }
+
+    function parseQuotedString(value) {
+      if (value.startsWith("'")) {
+        return value.slice(1, -1).replace(/''/g, "'");
+      }
+
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value.slice(1, -1);
+      }
+    }
+
+    function splitFlow(text) {
+      const parts = [];
+      let current = "";
+      let single = false;
+      let double = false;
+      let escaped = false;
+      let depth = 0;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+
+        if (char === "'" && !double) {
+          single = !single;
+        }
+
+        if (char === '"' && !single && !escaped) {
+          double = !double;
+        }
+
+        if (!single && !double) {
+          if (char === "[" || char === "{") depth++;
+          if (char === "]" || char === "}") depth--;
+
+          if (char === "," && depth === 0) {
+            parts.push(current.trim());
+            current = "";
+            continue;
+          }
+        }
+
+        current += char;
+
+        if (char === "\\" && double && !escaped) {
+          escaped = true;
+        } else {
+          escaped = false;
+        }
+      }
+
+      if (current.trim()) {
+        parts.push(current.trim());
+      }
+
+      return parts;
+    }
+
+    function findColon(text) {
+      let single = false;
+      let double = false;
+      let escaped = false;
+      let depth = 0;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+
+        if (char === "'" && !double) {
+          single = !single;
+        }
+
+        if (char === '"' && !single && !escaped) {
+          double = !double;
+        }
+
+        if (!single && !double) {
+          if (char === "[" || char === "{") depth++;
+          if (char === "]" || char === "}") depth--;
+
+          if (char === ":" && depth === 0) {
+            return i;
+          }
+        }
+
+        if (char === "\\" && double && !escaped) {
+          escaped = true;
+        } else {
+          escaped = false;
+        }
+      }
+
+      return -1;
+    }
+
+    function parseFlowArray(value) {
+      const inner = value.slice(1, -1).trim();
+
+      if (!inner) return [];
+
+      return splitFlow(inner).map(item => parseScalar(item));
+    }
+
+    function parseFlowObject(value) {
+      const inner = value.slice(1, -1).trim();
+      const result = {};
+
+      if (!inner) return result;
+
+      const pairs = splitFlow(inner);
+
+      for (const pair of pairs) {
+        const index = findColon(pair);
+
+        if (index === -1) {
+          throw new Error("Ungültiges YAML-Objekt.");
+        }
+
+        const key = pair.slice(0, index).trim();
+        const val = pair.slice(index + 1).trim();
+
+        result[cleanKey(key)] = parseScalar(val);
+      }
+
+      return result;
+    }
+
+    function cleanKey(key) {
+      key = key.trim();
+
+      if (
+        (key.startsWith('"') && key.endsWith('"')) ||
+        (key.startsWith("'") && key.endsWith("'"))
+      ) {
+        return parseQuotedString(key);
+      }
+
+      return key;
+    }
+
+    function preprocessYAML(text) {
+      const rawLines = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
+      const lines = [];
+
+      for (let i = 0; i < rawLines.length; i++) {
+        const cleaned = removeComment(rawLines[i]);
+
+        if (cleaned.trim() === "" || cleaned.trim() === "---" || cleaned.trim() === "...") {
+          continue;
+        }
+
+        lines.push({
+          text: cleaned,
+          indent: getIndent(cleaned),
+          lineNumber: i + 1
+        });
+      }
+
+      return lines;
+    }
+
+    function parseBlock(lines, startIndex, indent) {
+      if (startIndex >= lines.length) {
+        return [{}, startIndex];
+      }
+
+      const isArray = lines[startIndex].indent === indent &&
+        lines[startIndex].text.trim().startsWith("-");
+
+      const result = isArray ? [] : {};
+
+      let i = startIndex;
+
+      while (i < lines.length) {
+        const line = lines[i];
+
+        if (line.indent < indent) {
+          break;
+        }
+
+        if (line.indent > indent) {
+          throw new Error(
+            "Ungültige Einrückung in Zeile " + line.lineNumber + "."
+          );
+        }
+
+        const content = line.text.trim();
+
+        if (isArray) {
+          if (!content.startsWith("-")) {
+            break;
+          }
+
+          const itemText = content.slice(1).trim();
+
+          if (!itemText) {
+            if (
+              i + 1 < lines.length &&
+              lines[i + 1].indent > indent
+            ) {
+              const [child, nextIndex] = parseBlock(
+                lines,
+                i + 1,
+                lines[i + 1].indent
+              );
+
+              result.push(child);
+              i = nextIndex;
+              continue;
+            }
+
+            result.push(null);
+            i++;
+            continue;
+          }
+
+          const colon = findColon(itemText);
+
+          if (colon !== -1) {
+            const item = {};
+            const key = cleanKey(itemText.slice(0, colon).trim());
+            const valueText = itemText.slice(colon + 1).trim();
+
+            if (valueText) {
+              item[key] = parseScalar(valueText);
+              i++;
+
+              if (
+                i < lines.length &&
+                lines[i].indent > indent
+              ) {
+                const childIndent = lines[i].indent;
+
+                while (
+                  i < lines.length &&
+                  lines[i].indent === childIndent
+                ) {
+                  const childContent = lines[i].text.trim();
+                  const childColon = findColon(childContent);
+
+                  if (childContent.startsWith("-") || childColon === -1) {
+                    break;
+                  }
+
+                  const childKey = cleanKey(
+                    childContent.slice(0, childColon).trim()
+                  );
+
+                  const childValue = childContent
+                    .slice(childColon + 1)
+                    .trim();
+
+                  if (childValue) {
+                    item[childKey] = parseScalar(childValue);
+                    i++;
+                  } else {
+                    if (
+                      i + 1 < lines.length &&
+                      lines[i + 1].indent > childIndent
+                    ) {
+                      const [child, nextIndex] = parseBlock(
+                        lines,
+                        i + 1,
+                        lines[i + 1].indent
+                      );
+
+                      item[childKey] = child;
+                      i = nextIndex;
+                    } else {
+                      item[childKey] = {};
+                      i++;
+                    }
+                  }
+                }
+              }
+
+              result.push(item);
+              continue;
+            }
+
+            if (
+              i + 1 < lines.length &&
+              lines[i + 1].indent > indent
+            ) {
+              const [child, nextIndex] = parseBlock(
+                lines,
+                i + 1,
+                lines[i + 1].indent
+              );
+
+              item[key] = child;
+              result.push(item);
+              i = nextIndex;
+              continue;
+            }
+
+            item[key] = {};
+            result.push(item);
+            i++;
+            continue;
+          }
+
+          result.push(parseScalar(itemText));
+          i++;
+          continue;
+        }
+
+        const colon = findColon(content);
+
+        if (colon === -1) {
+          throw new Error(
+            "Ungültige YAML-Syntax in Zeile " + line.lineNumber + "."
+          );
+        }
+
+        const key = cleanKey(content.slice(0, colon).trim());
+        const valueText = content.slice(colon + 1).trim();
+
+        if (!key) {
+          throw new Error(
+            "Leerer Schlüssel in Zeile " + line.lineNumber + "."
+          );
+        }
+
+        if (valueText) {
+          result[key] = parseScalar(valueText);
+          i++;
+        } else {
+          if (
+            i + 1 < lines.length &&
+            lines[i + 1].indent > indent
+          ) {
+            const [child, nextIndex] = parseBlock(
+              lines,
+              i + 1,
+              lines[i + 1].indent
+            );
+
+            result[key] = child;
+            i = nextIndex;
+          } else {
+            result[key] = {};
+            i++;
+          }
+        }
+      }
+
+      return [result, i];
+    }
+
+    function parseYAML(text) {
+      const lines = preprocessYAML(text);
+
+      if (lines.length === 0) {
+        return {};
+      }
+
+      const [result, nextIndex] = parseBlock(
+        lines,
+        0,
+        lines[0].indent
+      );
+
+      if (nextIndex < lines.length) {
+        throw new Error(
+          "YAML konnte nicht vollständig verarbeitet werden."
+        );
+      }
+
+      return result;
+    }
+
+    function convertYAML() {
+      const input = document.getElementById("yamlInput").value.trim();
+      const output = document.getElementById("jsonOutput");
+      const message = document.getElementById("message");
+
+      message.textContent = "";
+      message.className = "message";
+
+      if (!input) {
+        output.value = "";
+        message.textContent = "Bitte geben Sie YAML-Daten ein.";
+        message.classList.add("error");
+        return;
+      }
+
+      try {
+        const result = parseYAML(input);
+
+        output.value = JSON.stringify(result, null, 2);
+
+        message.textContent = "YAML wurde erfolgreich in JSON umgewandelt.";
+        message.classList.add("success");
+      } catch (error) {
+        output.value = "";
+        message.textContent = "Fehler: " + error.message;
+        message.classList.add("error");
+      }
+    }
+
+    async function copyJSON() {
+      const output = document.getElementById("jsonOutput");
+      const message = document.getElementById("message");
+
+      if (!output.value) {
+        message.textContent = "Es gibt noch kein JSON zum Kopieren.";
+        message.className = "message error";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+
+        message.textContent = "JSON wurde kopiert.";
+        message.className = "message success";
+      } catch {
+        output.select();
+        document.execCommand("copy");
+
+        message.textContent = "JSON wurde kopiert.";
+        message.className = "message success";
+      }
+    }
+
+    function downloadJSON() {
+      const output = document.getElementById("jsonOutput").value;
+      const message = document.getElementById("message");
+
+      if (!output) {
+        message.textContent = "Es gibt noch kein JSON zum Herunterladen.";
+        message.className = "message error";
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "application/json;charset=utf-8" }
+      );
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "konvertierte-daten.json";
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      URL.revokeObjectURL(url);
+
+      message.textContent = "JSON-Datei wurde heruntergeladen.";
+      message.className = "message success";
+    }
+
+    function clearAll() {
+      document.getElementById("yamlInput").value = "";
+      document.getElementById("jsonOutput").value = "";
+
+      const message = document.getElementByI
