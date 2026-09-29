@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CSV zu JSON Konverter – CSV online in JSON umwandeln</title>
+
+  <meta name="description" content="Kostenloser CSV zu JSON Konverter. Wandeln Sie CSV-Dateien oder CSV-Daten direkt im Browser in JSON um. Schnell, einfach und ohne Upload.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/csv-zu-json.html">
+
+  <meta property="og:title" content="CSV zu JSON Konverter">
+  <meta property="og:description" content="CSV kostenlos online in JSON umwandeln. Ihre Daten bleiben auf Ihrem Gerät.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/csv-zu-json.html">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1f2937;
+      color: white;
+      padding: 25px 15px;
+      text-align: center;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+
+    .tool-box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 250px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      border: none;
+      padding: 11px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 15px;
+      background: #2563eb;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .clear-btn {
+      background: #dc2626;
+    }
+
+    .copy-btn {
+      background: #059669;
+    }
+
+    .download-btn {
+      background: #7c3aed;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 7px;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .privacy {
+      background: #ecfdf5;
+      border-left: 4px solid #10b981;
+      padding: 12px 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+
+    section {
+      background: white;
+      padding: 25px;
+      margin-top: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    }
+
+    section h2 {
+      margin-top: 0;
+      color: #1f2937;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      margin-top: 30px;
+      background: #1f2937;
+      color: white;
+    }
+
+    footer a {
+      color: white;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #3730a3;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      .tool-box,
+      section {
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie kann ich CSV in JSON umwandeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fügen Sie Ihre CSV-Daten in das Eingabefeld ein und klicken Sie auf CSV in JSON umwandeln. Das Ergebnis wird direkt im Browser angezeigt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden meine CSV-Daten hochgeladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Konvertierung erfolgt direkt in Ihrem Browser. Ihre Daten werden nicht an einen Server hochgeladen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich das JSON-Ergebnis herunterladen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Nach der Konvertierung können Sie das JSON-Ergebnis kopieren oder als JSON-Datei herunterladen."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+<header>
+  <h1>
+    <a href="https://toolforge1.github.io/entwickler-tools/">
+      CSV zu JSON Konverter
+    </a>
+  </h1>
+  <p>CSV schnell und kostenlos in JSON umwandeln</p>
+</header>
+
+<div class="container">
+
+  <div class="tool-box">
+
+    <h2>CSV in JSON umwandeln</h2>
+
+    <p>
+      Fügen Sie Ihre CSV-Daten unten ein und wandeln Sie sie direkt
+      im Browser in JSON um.
+    </p>
+
+    <textarea id="csvInput" placeholder="Beispiel:
+name,alter,stadt
+Ali,25,Karachi
+Ahmed,30,Lahore"></textarea>
+
+    <div class="buttons">
+      <button onclick="convertCSV()">CSV in JSON umwandeln</button>
+      <button class="clear-btn" onclick="clearAll()">Löschen</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <textarea id="jsonOutput" placeholder="JSON-Ergebnis erscheint hier..." readonly></textarea>
+
+    <div class="buttons">
+      <button class="copy-btn" onclick="copyJSON()">JSON kopieren</button>
+      <button class="download-btn" onclick="downloadJSON()">JSON herunterladen</button>
+    </div>
+
+    <div class="privacy">
+      <strong>🔒 Datenschutz:</strong>
+      Ihre Daten bleiben auf Ihrem Gerät. Die Konvertierung erfolgt
+      vollständig in Ihrem Browser und Ihre CSV-Daten werden nicht
+      auf einen Server hochgeladen.
+    </div>
+
+  </div>
+
+  <section>
+    <h2>So verwenden Sie den CSV zu JSON Konverter</h2>
+
+    <ol>
+      <li>Fügen Sie Ihre CSV-Daten in das Eingabefeld ein.</li>
+      <li>Klicken Sie auf „CSV in JSON umwandeln“.</li>
+      <li>Das konvertierte JSON wird sofort angezeigt.</li>
+      <li>Kopieren Sie das Ergebnis oder laden Sie es als JSON-Datei herunter.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Über CSV zu JSON</h2>
+
+    <p>
+      CSV und JSON sind zwei häufig verwendete Datenformate.
+      Mit diesem kostenlosen CSV zu JSON Konverter können Sie
+      tabellarische CSV-Daten schnell in strukturierte JSON-Daten
+      umwandeln.
+    </p>
+
+    <p>
+      Das Tool funktioniert direkt im Browser und benötigt keine
+      Installation oder Registrierung.
+    </p>
+  </section>
+
+  <section>
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie kann ich CSV in JSON umwandeln?</h3>
+    <p>
+      Fügen Sie Ihre CSV-Daten ein und klicken Sie auf
+      „CSV in JSON umwandeln“. Das JSON-Ergebnis wird direkt angezeigt.
+    </p>
+
+    <h3>Werden meine Daten gespeichert?</h3>
+    <p>
+      Nein. Die Konvertierung findet lokal in Ihrem Browser statt.
+      Die eingegebenen Daten werden nicht an unseren Server gesendet.
+    </p>
+
+    <h3>Kann ich das Ergebnis herunterladen?</h3>
+    <p>
+      Ja. Klicken Sie nach der Konvertierung auf
+      „JSON herunterladen“.
+    </p>
+  </section>
+
+  <section class="related-tools">
+    <h2>Verwandte Tools</h2>
+
+    <a href="json-zu-csv.html">JSON zu CSV</a>
+    <a href="tsv-zu-json.html">TSV zu JSON</a>
+    <a href="csv-zu-jsonl.html">CSV zu JSONL</a>
+    <a href="csv-zu-html.html">CSV zu HTML</a>
+    <a href="csv-zu-markdown.html">CSV zu Markdown</a>
+    <a href="csv-zu-sql.html">CSV zu SQL</a>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2026 Entwickler Tools</p>
+
+  <p>
+    <a href="https://toolforge1.github.io/entwickler-tools/">
+      Startseite
+    </a>
+    |
+    <a href="https://toolforge1.github.io/entwickler-tools/">
+      Alle Tools
+    </a>
+  </p>
+</footer>
+
+<script>
+  function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let insideQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+
+      if (char === '"') {
+        if (insideQuotes && line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          insideQuotes = !insideQuotes;
+        }
+      } else if (char === ',' && !insideQuotes) {
+        result.push(current.trim());
+        current = "";
+      } else {
+        current += char;
+      }
+    }
+
+    result.push(current.trim());
+
+    return result;
+  }
+
+  function convertCSV() {
+    const input = document.getElementById("csvInput").value.trim();
+    const output = document.getElementById("jsonOutput");
+    const message = document.getElementById("message");
+
+    message.style.display = "none";
+
+    if (!input) {
+      showError("Bitte geben Sie zuerst CSV-Daten ein.");
+      return;
+    }
+
+    try {
+      const lines = input
+        .split(/\r?\n/)
+        .filter(line => line.trim() !== "");
+
+      if (lines.length < 2) {
+        showError("Die CSV-Datei muss mindestens eine Kopfzeile und eine Datenzeile enthalten.");
+        return;
+      }
+
+      const headers = parseCSVLine(lines[0]);
+
+      if (headers.length === 0) {
+        showError("Keine gültigen CSV-Spalten gefunden.");
+        return;
+      }
+
+      const data = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = parseCSVLine(lines[i]);
+
+        if (values.length !== headers.length) {
+          showError(
+            "Fehler in Zeile " +
+            (i + 1) +
+            ": Die Anzahl der Werte stimmt nicht mit der Anzahl der Spalten überein."
+          );
+          return;
+        }
+
+        const obj = {};
+
+        headers.forEach((header, index) => {
+          obj[header] = values[index];
+        });
+
+        data.push(obj);
+      }
+
+      output.value = JSON.stringify(data, null, 2);
+
+    } catch (error) {
+      showError("Die CSV-Daten konnten nicht verarbeitet werden.");
+    }
+  }
+
+  function showError(text) {
+    const message = document.getElementById("message");
+    message.textContent = text;
+    message.style.display = "block";
+  }
+
+  function copyJSON() {
+    const output = document.getElementById("jsonOutput");
+
+    if (!output.value) {
+      showError("Es gibt noch kein JSON-Ergebnis zum Kopieren.");
+      return;
+    }
+
+    navigator.clipboard.writeText(output.value)
+      .then(() => {
+        alert("JSON wurde kopiert.");
+      })
+      .catch(() => {
+        output.select();
+        document.execCommand("copy");
+        alert("JSON wurde kopiert.");
+      });
+  }
+
+  function downloadJSON() {
+    const output = document.getElementById("jsonOutput").value;
+
+    if (!output) {
+      showError("Es gibt noch kein JSON-Ergebnis zum Herunterladen.");
+      return;
+    }
+
+    const blob = new Blob([output], {
+      type: "application/json"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "konvertierte-daten.json";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+  }
+
+  function clearAll() {
+    document.getElementById("csvInput").value = "";
+    document.getElementById("jsonOutput").value = "";
+
+    const message = document.getElementById("message");
+    message.style.display = "none";
+  }
+</script>
+
+</body>
+</html>
