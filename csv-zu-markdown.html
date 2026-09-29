@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CSV zu Markdown Konverter – CSV online in Markdown umwandeln</title>
+<meta name="description" content="Kostenloser CSV zu Markdown Konverter. Wandeln Sie CSV-Daten online in eine formatierte Markdown-Tabelle um. Schnell und direkt im Browser.">
+<meta name="keywords" content="CSV zu Markdown, CSV in Markdown umwandeln, CSV Markdown Konverter, CSV Markdown Converter, CSV zu Markdown online, CSV Tabelle in Markdown umwandeln">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/csv-zu-markdown.html">
+
+<meta property="og:title" content="CSV zu Markdown Konverter">
+<meta property="og:description" content="CSV kostenlos online in eine Markdown-Tabelle umwandeln. Schnell und direkt im Browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/csv-zu-markdown.html">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-39F5RV31D0');
+</script>
+
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"Wie kann ich CSV in Markdown umwandeln?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Fügen Sie Ihre CSV-Daten ein und klicken Sie auf „CSV in Markdown umwandeln“. Das Tool erstellt daraus eine formatierte Markdown-Tabelle."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Ist der CSV zu Markdown Konverter kostenlos?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Ja. Der CSV zu Markdown Konverter kann kostenlos direkt im Browser verwendet werden."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Werden meine CSV-Daten hochgeladen?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Nein. Die Konvertierung erfolgt direkt in Ihrem Browser. Ihre Daten werden nicht auf einen Server hochgeladen."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f7fa;
+  color:#222;
+  line-height:1.6
+}
+header{
+  background:#1f2937;
+  color:white;
+  text-align:center;
+  padding:28px 15px
+}
+header h1{margin:0;font-size:30px}
+header p{margin:8px 0 0}
+header a{color:white;text-decoration:none}
+.container{
+  max-width:1000px;
+  margin:30px auto;
+  padding:0 15px
+}
+.tool-box,section{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 3px 15px rgba(0,0,0,.07)
+}
+section{margin-top:25px}
+textarea{
+  width:100%;
+  min-height:240px;
+  padding:15px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  resize:vertical;
+  font-family:Consolas,monospace;
+  font-size:14px;
+  margin-top:10px;
+  margin-bottom:15px
+}
+textarea:focus{
+  outline:none;
+  border-color:#2563eb
+}
+.buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:15px
+}
+button{
+  border:none;
+  padding:11px 18px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:15px;
+  background:#2563eb;
+  color:white
+}
+button:hover{opacity:.9}
+.clear-btn{background:#dc2626}
+.copy-btn{background:#059669}
+.download-btn{background:#7c3aed}
+.message{
+  display:none;
+  padding:12px 15px;
+  margin-bottom:15px;
+  border-radius:7px;
+  background:#fee2e2;
+  color:#991b1b
+}
+.success{
+  display:none;
+  padding:12px 15px;
+  margin-bottom:15px;
+  border-radius:7px;
+  background:#dcfce7;
+  color:#166534
+}
+.privacy{
+  background:#ecfdf5;
+  border-left:4px solid #10b981;
+  padding:13px 15px;
+  margin-top:20px;
+  border-radius:5px
+}
+.related-tools a{
+  display:inline-block;
+  margin:5px 8px 5px 0;
+  padding:8px 12px;
+  background:#eef2ff;
+  color:#3730a3;
+  border-radius:6px;
+  text-decoration:none
+}
+footer{
+  text-align:center;
+  padding:30px 15px;
+  margin-top:30px;
+  background:#1f2937;
+  color:white
+}
+footer a{
+  color:white;
+  text-decoration:none;
+  margin:0 8px
+}
+@media(max-width:600px){
+  header h1{font-size:24px}
+  .tool-box,section{padding:18px}
+  button{width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>
+<a href="https://toolforge1.github.io/entwickler-tools/">
+CSV zu Markdown Konverter
+</a>
+</h1>
+<p>CSV online schnell und kostenlos in Markdown umwandeln</p>
+</header>
+
+<div class="container">
+
+<div class="tool-box">
+
+<h2>CSV in Markdown umwandeln</h2>
+
+<p>
+Fügen Sie Ihre CSV-Daten ein und wandeln Sie sie direkt
+im Browser in eine formatierte Markdown-Tabelle um.
+</p>
+
+<label for="csvInput"><strong>CSV-Eingabe</strong></label>
+
+<textarea id="csvInput" placeholder="Beispiel:
+name,alter,stadt
+Ali,25,Karachi
+Ahmed,30,Lahore
+Sara,28,Islamabad"></textarea>
+
+<div class="buttons">
+<button onclick="convertCSV()">CSV in Markdown umwandeln</button>
+<button class="clear-btn" onclick="clearAll()">Alles löschen</button>
+</div>
+
+<div id="message" class="message"></div>
+<div id="success" class="success"></div>
+
+<label for="markdownOutput"><strong>Markdown-Ergebnis</strong></label>
+
+<textarea id="markdownOutput"
+placeholder="Die Markdown-Tabelle wird hier angezeigt..."
+readonly></textarea>
+
+<div class="buttons">
+<button class="copy-btn" onclick="copyMarkdown()">Markdown kopieren</button>
+<button class="download-btn" onclick="downloadMarkdown()">Markdown herunterladen</button>
+</div>
+
+<div class="privacy">
+<strong>🔒 Datenschutz:</strong>
+Ihre Daten bleiben auf Ihrem Gerät. Die Konvertierung erfolgt
+vollständig in Ihrem Browser. Ihre CSV-Daten werden nicht
+auf einen Server hochgeladen.
+</div>
+
+</div>
+
+<section>
+<h2>So verwenden Sie den CSV zu Markdown Konverter</h2>
+
+<ol>
+<li>Fügen Sie Ihre CSV-Daten in das Eingabefeld ein.</li>
+<li>Stellen Sie sicher, dass die erste Zeile die Spaltennamen enthält.</li>
+<li>Klicken Sie auf „CSV in Markdown umwandeln“.</li>
+<li>Die Markdown-Tabelle wird sofort erstellt.</li>
+<li>Kopieren Sie den Markdown-Code oder laden Sie ihn herunter.</li>
+</ol>
+</section>
+
+<section>
+<h2>CSV zu Markdown Konverter online</h2>
+
+<p>
+Markdown ist eine einfache Auszeichnungssprache, die häufig in
+README-Dateien, Dokumentationen, GitHub-Projekten und verschiedenen
+Entwicklerplattformen verwendet wird.
+</p>
+
+<p>
+Mit diesem kostenlosen CSV zu Markdown Konverter können Sie
+tabellarische CSV-Daten schnell in eine Markdown-Tabelle umwandeln.
+Die Verarbeitung erfolgt direkt in Ihrem Browser.
+</p>
+</section>
+
+<section>
+<h2>Häufig gestellte Fragen</h2>
+
+<h3>Wie kann ich CSV in Markdown umwandeln?</h3>
+<p>
+Fügen Sie Ihre CSV-Daten ein und klicken Sie auf
+„CSV in Markdown umwandeln“. Das Ergebnis wird als Markdown-Tabelle
+angezeigt.
+</p>
+
+<h3>Ist der CSV zu Markdown Konverter kostenlos?</h3>
+<p>
+Ja. Das Tool kann kostenlos direkt im Browser verwendet werden.
+</p>
+
+<h3>Werden meine CSV-Daten gespeichert?</h3>
+<p>
+Nein. Die Konvertierung findet lokal in Ihrem Browser statt.
+Ihre Daten werden nicht an einen Server übertragen.
+</p>
+
+<h3>Wo kann ich die Markdown-Tabelle verwenden?</h3>
+<p>
+Sie können die erzeugte Markdown-Tabelle beispielsweise in
+GitHub README-Dateien, Dokumentationen und Markdown-Dokumenten
+verwenden.
+</p>
+</section>
+
+<section class="related-tools">
+<h2>Verwandte Tools</h2>
+
+<a href="csv-zu-json.html">CSV zu JSON</a>
+<a href="csv-zu-html.html">CSV zu HTML</a>
+<a href="csv-zu-jsonl.html">CSV zu JSONL</a>
+<a href="csv-zu-sql.html">CSV zu SQL</a>
+<a href="csv-zu-tsv.html">CSV zu TSV</a>
+<a href="json-zu-markdown.html">JSON zu Markdown</a>
+</section>
+
+</div>
+
+<footer>
+<p>© 2026 Entwickler Tools</p>
+<p>
+<a href="https://toolforge1.github.io/entwickler-tools/">Startseite</a>
+|
+<a href="https://toolforge1.github.io/entwickler-tools/">Alle Tools</a>
+</p>
+</footer>
+
+<script>
+function parseCSVLine(line){
+  const result=[];
+  let current="";
+  let insideQuotes=false;
+
+  for(let i=0;i<line.length;i++){
+    const char=line[i];
+
+    if(char==='"'){
+      if(insideQuotes && line[i+1]==='"'){
+        current+='"';
+        i++;
+      }else{
+        insideQuotes=!insideQuotes;
+      }
+    }else if(char==="," && !insideQuotes){
+      result.push(current.trim());
+      current="";
+    }else{
+      current+=char;
+    }
+  }
+
+  result.push(current.trim());
+  return result;
+}
+
+function escapeMarkdown(value){
+  return String(value)
+    .replace(/\|/g,"\\|")
+    .replace(/\r?\n/g," ");
+}
+
+function showError(text){
+  document.getElementById("success").style.display="none";
+  const message=document.getElementById("message");
+  message.textContent=text;
+  message.style.display="block";
+}
+
+function showSuccess(text){
+  document.getElementById("message").style.display="none";
+  const success=document.getElementById("success");
+  success.textContent=text;
+  success.style.display="block";
+}
+
+function convertCSV(){
+  const input=document.getElementById("csvInput").value.trim();
+  const output=document.getElementById("markdownOutput");
+
+  document.getElementById("message").style.display="none";
+  document.getElementById("success").style.display="none";
+
+  if(!input){
+    showError("Bitte geben Sie zuerst CSV-Daten ein.");
+    return;
+  }
+
+  try{
+    const lines=input
+      .split(/\r?\n/)
+      .filter(line=>line.trim()!=="");
+
+    if(lines.length<2){
+      showError(
+        "Die CSV-Daten müssen mindestens eine Kopfzeile und eine Datenzeile enthalten."
+      );
+      return;
+    }
+
+    const headers=parseCSVLine(lines[0]);
+
+    if(!headers.length){
+      showError("Es wurden keine gültigen Spalten gefunden.");
+      return;
+    }
+
+    const duplicateHeaders=headers.filter(
+      (header,index)=>headers.indexOf(header)!==index
+    );
+
+    if(duplicateHeaders.length>0){
+      showError("Die CSV-Kopfzeile enthält doppelte Spaltennamen.");
+      return;
+    }
+
+    let markdown="";
+
+    markdown+="| "+
+      headers.map(header=>escapeMarkdown(header)).join(" | ")+
+      " |\n";
+
+    markdown+="| "+
+      headers.map(()=> "---").join(" | ")+
+      " |\n";
+
+    for(let i=1;i<lines.length;i++){
+      const values=parseCSVLine(lines[i]);
+
+      if(values.length!==headers.length){
+        showError(
+          "Fehler in Zeile "+
+          (i+1)+
+          ": Die Anzahl der Werte stimmt nicht mit der Anzahl der Spalten überein."
+        );
+        return;
+      }
+
+      markdown+="| "+
+        values.map(value=>escapeMarkdown(value)).join(" | ")+
+        " |\n";
+    }
+
+    output.value=markdown;
+
+    showSuccess(
+      "Die CSV-Daten wurden erfolgreich in Markdown umgewandelt."
+    );
+
+  }catch(error){
+    showError(
+      "Die CSV-Daten konnten nicht verarbeitet werden. Bitte überprüfen Sie Ihre Eingabe."
+    );
+  }
+}
+
+function copyMarkdown(){
+  const output=document.getElementById("markdownOutput");
+
+  if(!output.value){
+    showError("Es gibt noch keine Markdown-Tabelle zum Kopieren.");
+    return;
+  }
+
+  navigator.clipboard.writeText(output.value)
+    .then(()=>{
+      showSuccess("Die Markdown-Tabelle wurde erfolgreich kopiert.");
+    })
+    .catch(()=>{
+      output.select();
+      document.execCommand("copy");
+      showSuccess("Die Markdown-Tabelle wurde erfolgreich kopiert.");
+    });
+}
+
+function downloadMarkdown(){
+  const output=document.getElementById("markdownOutput").value;
+
+  if(!output){
+    showError("Es gibt noch keine Markdown-Tabelle zum Herunterladen.");
+    return;
+  }
+
+  const blob=new Blob([output],{
+    type:"text/markdown;charset=utf-8"
+  });
+
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement("a");
+
+  link.href=url;
+  link.download="konvertierte-tabelle.md";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+
+  showSuccess("Die Markdown-Datei wurde heruntergeladen.");
+}
+
+function clearAll(){
+  document.getElementById("csvInput").value="";
+  document.getElementById("markdownOutput").value="";
+  document.getElementById("message").style.display="none";
+  document.getElementById("success").style.display="none";
+}
+</script>
+
+</body>
+</html>
