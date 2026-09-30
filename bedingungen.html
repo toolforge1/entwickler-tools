@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nutzungsbedingungen | Entwickler Tools</title>
+
+  <meta name="description" content="Nutzungsbedingungen von Entwickler Tools. Informationen zur Nutzung der kostenlosen browserbasierten Entwickler- und Daten-Tools.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/bedingungen.html">
+
+  <meta property="og:title" content="Nutzungsbedingungen | Entwickler Tools">
+  <meta property="og:description" content="Nutzungsbedingungen für die kostenlosen browserbasierten Entwickler- und Daten-Tools von Entwickler Tools.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/bedingungen.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #e5eaf1;
+      --primary: #4f46e5;
+      --primary-2: #7c3aed;
+      --header: #0b1020;
+      --header-2: #151b31;
+    }
+
+    body.dark {
+      --bg: #080d19;
+      --surface: #101827;
+      --text: #f1f5f9;
+      --muted: #a6b0c0;
+      --border: #263246;
+      --header: #050812;
+      --header-2: #10182a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    header {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(99,102,241,.28), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(124,58,237,.25), transparent 30%),
+        linear-gradient(135deg, var(--header), var(--header-2));
+      color: white;
+      padding: 24px 18px 60px;
+    }
+
+    .topbar {
+      max-width: 1000px;
+      margin: 0 auto 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .theme-btn {
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      color: white;
+      padding: 9px 13px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .hero {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -1.8px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 18px auto 0;
+      color: #cbd5e1;
+      font-size: 17px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: -35px auto 0;
+      padding: 0 18px 55px;
+      position: relative;
+    }
+
+    .content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 12px 35px rgba(15,23,42,.08);
+    }
+
+    section {
+      margin-bottom: 35px;
+    }
+
+    section:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 23px;
+      letter-spacing: -.4px;
+    }
+
+    p {
+      margin: 8px 0;
+      color: var(--muted);
+    }
+
+    ul {
+      color: var(--muted);
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .notice {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 15px;
+    }
+
+    .notice strong {
+      color: var(--text);
+    }
+
+    footer {
+      background: var(--header);
+      color: #aeb8c8;
+      text-align: center;
+      padding: 30px 18px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    footer a {
+      color: #cbd5e1;
+      text-decoration: none;
+      margin: 0 7px;
+      display: inline-block;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 23px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      footer a {
+        margin: 5px 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="topbar">
+    <div class="brand">⚡ Entwickler Tools</div>
+
+    <button class="theme-btn" id="themeToggle" type="button">
+      🌙 Dunkel
+    </button>
+  </div>
+
+  <div class="hero">
+    <h1>Nutzungsbedingungen</h1>
+
+    <p>
+      Bedingungen für die Nutzung der kostenlosen
+      Entwickler- und Daten-Tools von Entwickler Tools.
+    </p>
+  </div>
+
+</header>
+
+<main>
+
+  <article class="content">
+
+    <section>
+      <h2>1. Geltungsbereich</h2>
+
+      <p>
+        Diese Nutzungsbedingungen gelten für die Nutzung der Website
+        Entwickler Tools und der dort angebotenen browserbasierten
+        Entwickler- und Daten-Tools.
+      </p>
+
+      <p>
+        Durch die Nutzung dieser Website erklären Sie sich mit diesen
+        Bedingungen einverstanden.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Nutzung der Website</h2>
+
+      <p>
+        Die angebotenen Tools sind grundsätzlich für eine kostenlose
+        Nutzung vorgesehen. Sie können beispielsweise zum Konvertieren,
+        Formatieren, Vergleichen und Bearbeiten verschiedener Datenformate
+        verwendet werden.
+      </p>
+
+      <p>
+        Die Nutzung muss im Rahmen der geltenden Gesetze und dieser
+        Nutzungsbedingungen erfolgen.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Nutzerdaten und eingegebene Inhalte</h2>
+
+      <p>
+        Viele Tools verarbeiten eingegebene Daten direkt in Ihrem Browser.
+        Nutzer sind selbst dafür verantwortlich, welche Daten sie in die
+        Tools eingeben.
+      </p>
+
+      <div class="notice">
+        <strong>Hinweis:</strong>
+        Bitte geben Sie keine vertraulichen oder besonders sensiblen
+        Informationen ein, wenn Sie sich über die Sicherheit einer
+        bestimmten Verarbeitung nicht sicher sind.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Verbotene Nutzung</h2>
+
+      <p>
+        Die Website darf nicht für rechtswidrige Zwecke oder für
+        Aktivitäten verwendet werden, die anderen Personen, Systemen
+        oder Diensten schaden können.
+      </p>
+
+      <ul>
+        <li>keine rechtswidrigen Aktivitäten</li>
+        <li>keine absichtlichen Angriffe auf die Website</li>
+        <li>kein Missbrauch automatisierter Zugriffe</li>
+        <li>keine Umgehung von Sicherheitsmaßnahmen</li>
+        <li>keine Nutzung zur Verbreitung schädlicher Inhalte</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Genauigkeit der Tools</h2>
+
+      <p>
+        Die Tools werden mit dem Ziel bereitgestellt, nützliche und
+        möglichst zuverlässige Ergebnisse zu liefern.
+      </p>
+
+      <p>
+        Dennoch können bei bestimmten Eingaben, Datenformaten oder
+        ungewöhnlichen Strukturen Fehler oder unerwartete Ergebnisse
+        auftreten.
+      </p>
+
+      <p>
+        Ergebnisse sollten daher vor einer wichtigen oder produktiven
+        Verwendung überprüft werden.
+      </p>
+    </section>
+
+    <section>
+      <h2>6. Keine Garantie</h2>
+
+      <p>
+        Die Website und ihre Tools werden nach Verfügbarkeit bereitgestellt.
+        Es wird nicht garantiert, dass alle Funktionen jederzeit ohne
+        Unterbrechung oder Fehler verfügbar sind.
+      </p>
+    </section>
+
+    <section>
+      <h2>7. Haftungsbeschränkung</h2>
+
+      <p>
+        Soweit gesetzlich zulässig, wird keine Haftung für Schäden
+        übernommen, die aus der Nutzung oder der Nichtverfügbarkeit
+        der Website oder ihrer Tools entstehen.
+      </p>
+
+      <p>
+        Nutzer sollten wichtige Ergebnisse vor der weiteren Verwendung
+        selbst überprüfen und sichern.
+      </p>
+    </section>
+
+    <section>
+      <h2>8. Drittanbieter-Dienste</h2>
+
+      <p>
+        Die Website kann Dienste von Drittanbietern verwenden, zum Beispiel
+        für Webanalyse, Hosting oder zukünftig für Werbung.
+      </p>
+
+      <p>
+        Für diese Dienste können zusätzlich die jeweiligen Bedingungen
+        und Datenschutzrichtlinien der Anbieter gelten.
+      </p>
+    </section>
+
+    <section>
+      <h2>9. Externe Links</h2>
+
+      <p>
+        Die Website kann Links zu externen Websites enthalten.
+        Für Inhalte, Verfügbarkeit oder Datenschutzpraktiken externer
+        Websites sind die jeweiligen Betreiber verantwortlich.
+      </p>
+    </section>
+
+    <section>
+      <h2>10. Änderungen der Website</h2>
+
+      <p>
+        Funktionen, Tools, Inhalte oder Teile der Website können jederzeit
+        geändert, erweitert, eingeschränkt oder entfernt werden.
+      </p>
+    </section>
+
+    <section>
+      <h2>11. Änderungen dieser Nutzungsbedingungen</h2>
+
+      <p>
+        Diese Nutzungsbedingungen können bei Bedarf aktualisiert werden,
+        beispielsweise wenn sich Funktionen, Dienste oder rechtliche
+        Anforderungen ändern.
+      </p>
+    </section>
+
+    <section>
+      <h2>12. Kontakt</h2>
+
+      <p>
+        Bei Fragen zu diesen Nutzungsbedingungen können Sie unsere
+        <a href="kontakt.html">Kontaktseite</a>
+        besuchen.
+      </p>
+    </section>
+
+  </article>
+
+</main>
+
+<footer>
+
+  <p>
+    <strong>⚡ Entwickler Tools</strong>
+  </p>
+
+  <p>
+    <a href="index.html">Home</a>
+    <a href="ueber-uns.html">Über uns</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="bedingungen.html">Bedingungen</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a href="cookie-richtlinie.html">Cookie-Richtlinie</a>
+  </p>
+
+  <p>
+    © 2026 Entwickler Tools. Alle Rechte vorbehalten.
+  </p>
+
+</footer>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("entwickler-tools-theme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "☀️ Hell";
+  }
+
+  themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    const isDark = document.body.classList.contains("dark");
+
+    localStorage.setItem(
+      "entwickler-tools-theme",
+      isDark ? "dark" : "light"
+    );
+
+    themeToggle.textContent =
+      isDark ? "☀️ Hell" : "🌙 Dunkel";
+
+  });
+</script>
+
+</body>
+</html>
