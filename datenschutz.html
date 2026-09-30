@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Datenschutz | Entwickler Tools</title>
+
+  <meta name="description" content="Datenschutzerklärung von Entwickler Tools. Erfahren Sie, wie Daten, Google Analytics und Cookies auf dieser Website verwendet werden.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/entwickler-tools/datenschutz.html">
+
+  <meta property="og:title" content="Datenschutz | Entwickler Tools">
+  <meta property="og:description" content="Datenschutzerklärung von Entwickler Tools. Informationen zu Datenverarbeitung, Google Analytics und Cookies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/entwickler-tools/datenschutz.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-39F5RV31D0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-39F5RV31D0');
+  </script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #e5eaf1;
+      --primary: #4f46e5;
+      --primary-2: #7c3aed;
+      --header: #0b1020;
+      --header-2: #151b31;
+    }
+
+    body.dark {
+      --bg: #080d19;
+      --surface: #101827;
+      --text: #f1f5f9;
+      --muted: #a6b0c0;
+      --border: #263246;
+      --header: #050812;
+      --header-2: #10182a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    header {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(99,102,241,.28), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(124,58,237,.25), transparent 30%),
+        linear-gradient(135deg, var(--header), var(--header-2));
+      color: white;
+      padding: 24px 18px 60px;
+    }
+
+    .topbar {
+      max-width: 1000px;
+      margin: 0 auto 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .theme-btn {
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      color: white;
+      padding: 9px 13px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .hero {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -1.8px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 18px auto 0;
+      color: #cbd5e1;
+      font-size: 17px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: -35px auto 0;
+      padding: 0 18px 55px;
+      position: relative;
+    }
+
+    .content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 12px 35px rgba(15,23,42,.08);
+    }
+
+    section {
+      margin-bottom: 35px;
+    }
+
+    section:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 23px;
+      letter-spacing: -.4px;
+    }
+
+    p {
+      margin: 8px 0;
+      color: var(--muted);
+    }
+
+    ul {
+      color: var(--muted);
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .notice {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 15px;
+    }
+
+    .notice strong {
+      color: var(--text);
+    }
+
+    footer {
+      background: var(--header);
+      color: #aeb8c8;
+      text-align: center;
+      padding: 30px 18px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    footer a {
+      color: #cbd5e1;
+      text-decoration: none;
+      margin: 0 7px;
+      display: inline-block;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 23px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      footer a {
+        margin: 5px 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">⚡ Entwickler Tools</div>
+
+    <button class="theme-btn" id="themeToggle" type="button">
+      🌙 Dunkel
+    </button>
+  </div>
+
+  <div class="hero">
+    <h1>Datenschutz</h1>
+
+    <p>
+      Informationen darüber, wie wir mit Daten, Cookies und
+      Analyse-Diensten auf dieser Website umgehen.
+    </p>
+  </div>
+</header>
+
+<main>
+  <article class="content">
+
+    <section>
+      <h2>Über diese Datenschutzerklärung</h2>
+
+      <p>
+        Diese Datenschutzerklärung erläutert, welche Informationen
+        beim Besuch von Entwickler Tools verarbeitet werden können
+        und wie die auf dieser Website verwendeten Dienste damit umgehen.
+      </p>
+    </section>
+
+    <section>
+      <h2>Browserbasierte Verarbeitung</h2>
+
+      <p>
+        Die angebotenen Entwickler-Tools sind grundsätzlich so konzipiert,
+        dass die Verarbeitung Ihrer eingegebenen Daten direkt in Ihrem
+        Browser erfolgt.
+      </p>
+
+      <p>
+        CSV-, JSON- und andere Daten, die Sie in ein Tool eingeben,
+        müssen für die normale Nutzung nicht auf einen Server hochgeladen
+        werden.
+      </p>
+
+      <div class="notice">
+        <strong>🔒 Datenschutzfreundlich:</strong>
+        Die Verarbeitung der Tool-Daten erfolgt lokal in Ihrem Browser,
+        soweit die jeweilige Funktion dies unterstützt.
+      </div>
+    </section>
+
+    <section>
+      <h2>Welche Informationen können erfasst werden?</h2>
+
+      <p>
+        Beim normalen Besuch der Website können technische Informationen
+        durch Ihren Browser oder durch eingesetzte Drittanbieter-Dienste
+        verarbeitet werden. Dazu können beispielsweise gehören:
+      </p>
+
+      <ul>
+        <li>IP-Adresse oder ungefähre Standortinformationen</li>
+        <li>Browsertyp und Betriebssystem</li>
+        <li>Geräte- und Bildschirminformationen</li>
+        <li>besuchte Seiten und Interaktionen</li>
+        <li>Datum und Uhrzeit des Besuchs</li>
+        <li>technische Informationen über die Nutzung der Website</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Google Analytics</h2>
+
+      <p>
+        Diese Website verwendet Google Analytics, einen Webanalysedienst
+        von Google. Google Analytics kann Informationen über die Nutzung
+        der Website erfassen, um Besucherzahlen, Seitenaufrufe,
+        Interaktionen und allgemeine Nutzungsstatistiken zu verstehen.
+      </p>
+
+      <p>
+        Die dabei verwendeten Technologien können Cookies oder ähnliche
+        Kennungen umfassen. Die Verarbeitung erfolgt nach den
+        Einstellungen und Bedingungen von Google.
+      </p>
+    </section>
+
+    <section>
+      <h2>Cookies</h2>
+
+      <p>
+        Diese Website kann Cookies oder ähnliche Technologien verwenden.
+        Cookies können beispielsweise für Analysefunktionen,
+        Website-Einstellungen oder zukünftige Werbedienste eingesetzt
+        werden.
+      </p>
+
+      <p>
+        Weitere Informationen finden Sie in unserer
+        <a href="cookie-richtlinie.html">Cookie-Richtlinie</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Drittanbieter-Dienste</h2>
+
+      <p>
+        Bestimmte Funktionen der Website können Dienste von Drittanbietern
+        verwenden. Diese Anbieter können Informationen entsprechend ihren
+        eigenen Datenschutzrichtlinien verarbeiten.
+      </p>
+
+      <p>
+        Dazu können insbesondere Analyse-, Hosting- oder zukünftige
+        Werbedienste gehören.
+      </p>
+    </section>
+
+    <section>
+      <h2>Werbung</h2>
+
+      <p>
+        Sollte die Website zukünftig Werbedienste wie Google AdSense
+        verwenden, können zusätzliche Cookies oder ähnliche Technologien
+        eingesetzt werden.
+      </p>
+
+      <p>
+        Informationen über solche Technologien und deren Verwendung werden
+        entsprechend den geltenden Richtlinien und den jeweiligen
+        Einstellungen bereitgestellt.
+      </p>
+    </section>
+
+    <section>
+      <h2>Externe Links</h2>
+
+      <p>
+        Diese Website kann Links zu externen Websites enthalten.
+        Wir sind nicht für die Datenschutzpraktiken oder Inhalte
+        externer Websites verantwortlich.
+      </p>
+    </section>
+
+    <section>
+      <h2>Datenschutz von Kindern</h2>
+
+      <p>
+        Diese Website richtet sich nicht speziell an Kinder.
+        Wir beabsichtigen nicht, wissentlich personenbezogene Daten
+        von Kindern zu sammeln.
+      </p>
+    </section>
+
+    <section>
+      <h2>Änderungen dieser Datenschutzerklärung</h2>
+
+      <p>
+        Diese Datenschutzerklärung kann gelegentlich aktualisiert werden,
+        beispielsweise wenn sich Funktionen, Dienste oder rechtliche
+        Anforderungen ändern.
+      </p>
+    </section>
+
+    <section>
+      <h2>Kontakt</h2>
+
+      <p>
+        Wenn Sie Fragen zu dieser Datenschutzerklärung oder zur
+        Verarbeitung von Informationen auf dieser Website haben,
+        können Sie die
+        <a href="kontakt.html">Kontaktseite</a>
+        besuchen.
+      </p>
+    </section>
+
+  </article>
+</main>
+
+<footer>
+  <p>
+    <strong>⚡ Entwickler Tools</strong>
+  </p>
+
+  <p>
+    <a href="index.html">Home</a>
+    <a href="ueber-uns.html">Über uns</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="bedingungen.html">Bedingungen</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a href="cookie-richtlinie.html">Cookie-Richtlinie</a>
+  </p>
+
+  <p>
+    © 2026 Entwickler Tools. Alle Rechte vorbehalten.
+  </p>
+</footer>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("entwickler-tools-theme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "☀️ Hell";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    const isDark = document.body.classList.contains("dark");
+
+    localStorage.setItem(
+      "entwickler-tools-theme",
+      isDark ? "dark" : "light"
+    );
+
+    themeToggle.textContent = isDark ? "☀️ Hell" : "🌙 Dunkel";
+  });
+</script>
+
+</body>
+</html>
