@@ -722,4 +722,54 @@
         <span class="tool-arrow">Tool öffnen →</span>
       </a>
 
-      <a cla
+          </div>
+  </section>
+
+  <footer>
+    <p>
+      <strong>⚡ Entwickler Tools</strong>
+    </p>
+
+    <p>
+      <a href="index.html">Home</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="bedingungen.html">Bedingungen</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="cookie-richtlinie.html">Cookie-Richtlinie</a>
+    </p>
+
+    <p>
+      © 2026 Entwickler Tools
+    </p>
+  </footer>
+
+</main>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("entwickler-tools-theme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "☀️ Hell";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    const isDark = document.body.classList.contains("dark");
+
+    localStorage.setItem(
+      "entwickler-tools-theme",
+      isDark ? "dark" : "light"
+    );
+
+    themeToggle.textContent =
+      isDark ? "☀️ Hell" : "🌙 Dunkel";
+  });
+</script>
+
+</body>
+</html>
